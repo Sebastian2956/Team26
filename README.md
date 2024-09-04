@@ -4,7 +4,7 @@ Team 26 Contact Manager
 
 Hello everyone this is a change
 This is changed from github
-Testing git commands on readme
+Testing git commands
 
 ## Collaborators
 - Sebastian Llano (PM)
