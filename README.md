@@ -8,6 +8,10 @@ Testing git commands
 Another test :)
 testing
 
+<<<<<<< Updated upstream
+=======
+This is a test for git with a test branch
+>>>>>>> Stashed changes
 ## Collaborators
 - Sebastian Llano (PM)
 - Liam Harvell (API 1)
