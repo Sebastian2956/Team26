@@ -8,9 +8,9 @@ Testing git commands
 Another test :)
 testing
 
-<<<<<<< Updated upstream
-=======
 This is a test for git with a test branch
+
+This a test without the test branch
 >>>>>>> Stashed changes
 ## Collaborators
 - Sebastian Llano (PM)
