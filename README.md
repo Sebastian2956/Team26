@@ -7,7 +7,7 @@ This is changed from github
 Testing git commands
 Another test :)
 testing
-This is a test for git with a test branch
+
 ## Collaborators
 - Sebastian Llano (PM)
 - Liam Harvell (API 1)
