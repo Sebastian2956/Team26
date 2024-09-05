@@ -8,10 +8,11 @@ Testing git commands
 Another test :)
 testing
 
-This is a test for git with a test branch
+Commit test on main branch
 
-This a test without the test branch
->>>>>>> Stashed changes
+Not sure how merge works with test branch works as it just makes me delete the edited text
+
+
 ## Collaborators
 - Sebastian Llano (PM)
 - Liam Harvell (API 1)
