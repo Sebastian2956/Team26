@@ -1,0 +1,25 @@
+.dashboard-table {
+    /* background-color: #cc6a6a; */
+    font-size: 22px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;   
+}
+
+.dashboard-table th {
+    padding: 1.2rem;
+    border: 2px solid;
+
+}
+
+.dashboard-table td {
+    border: 2px solid;
+    padding: 0.8rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
