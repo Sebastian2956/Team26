@@ -4,7 +4,8 @@
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    border-collapse: collapse;   
+    border-collapse: collapse;
+    table-layout: auto; 
 }
 
 .dashboard-table th {
@@ -22,4 +23,13 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+h1 { 
+    font-size: 40px;
+    width: 100%;
+    margin: 2% 5%;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    color: #00d5124f;
 }
