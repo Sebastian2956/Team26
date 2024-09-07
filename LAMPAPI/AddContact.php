@@ -7,7 +7,7 @@
 	$Email = $inData["Email"];
 	$userId = $inData["userId"]; #still need a way to get the current user's id to assign contact to this user
 
-	$conn = new mysqli("team26cm.seb.christmas/", "Sebastian", "123456789", "ContactManager");
+	$conn = new mysqli("team26cm.seb.christmas/Team26", "Sebastian", "123456789", "ContactManager");
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
