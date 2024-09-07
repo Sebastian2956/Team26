@@ -16,8 +16,8 @@ body {
     background-size: cover;
 }
 
-.container {
-    width: 350px;
+.logincontainer{
+    width: 400px;
     height: 350px;
     position: relative;
     z-index: 1;
@@ -28,15 +28,16 @@ body {
     
 }
 
-.container::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
+.regcontainer{
+    width: 400px;
+    height: 450px;
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    z-index: -1;
+    border: 1px solid #fff;
+    
 }
 
 .wrapper {
@@ -48,24 +49,17 @@ body {
 form {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 label {
     font-size: 11px;
-    color: rgba(177, 177, 177, 0.3);
+    color: white;
 }
 
-input {
-   /* width: 100%;
-    height: 30px;
-    border: none;
-    border-radius: 50px;
-    margin: 10px 0;
-    padding-left: 30px; */
-
+input{
     padding: 10px;
-    margin-top: 25px;
+    margin-top: 20px;
     border: none;
     border-radius: 10px;
     background: transparent;
@@ -74,12 +68,20 @@ input {
     font-size: 12px;
 }
 
+#newAccount{
+    font-size: 20px; 
+}
+
+#name::placeholder{
+    text-align: center;
+}
 #username::placeholder{
     text-align: center;
 }
 #password::placeholder{
     text-align: center;
 }
+
 
 #username{
     text-align: center;
@@ -89,13 +91,17 @@ input {
     text-align: center;
     background-color: white;
 }
-
-p{
-    color: white;
+#name{
+    text-align: center;
+    background-color: white;
+}
+#email{
+    text-align: center;
+    background-color: white;
 }
 
 #regText{
-    color: whitesmoke;
+    color: white;
 }
 
 button {
@@ -116,11 +122,11 @@ button:hover {
 
 p {
     font-size: 12px;
-    color: #131212;
+    color: white;
     margin-top: 15px;
 }
 
-h1 {
+.wrapper h1 {
     text-align: center;
     margin-top: 30px;
     margin-bottom: -5px;
