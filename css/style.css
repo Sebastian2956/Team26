@@ -48,12 +48,11 @@ body {
 form {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 label {
     font-size: 11px;
-
     color: rgba(177, 177, 177, 0.3);
 }
 
@@ -73,6 +72,30 @@ input {
     border: 1px solid #fff;
     color: black;
     font-size: 12px;
+}
+
+#username::placeholder{
+    text-align: center;
+}
+#password::placeholder{
+    text-align: center;
+}
+
+#username{
+    text-align: center;
+    background-color: white;
+}
+#password{
+    text-align: center;
+    background-color: white;
+}
+
+p{
+    color: white;
+}
+
+#regText{
+    color: whitesmoke;
 }
 
 button {
