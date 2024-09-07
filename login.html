@@ -11,13 +11,13 @@
 </head>
 <body class="mt-5 p-3 bg-light">
     <h1>login</h1>
-    <form action="">
+    <form onsubmit="return doLogin(event);">
         <input id="loginName" type="text" placeholder="Username">
         <br><br>
         <input id="loginPassword" type="password" placeholder="Password">
         <br><br>
 
-        <button type="submit" class="btn btn-primary" onclick="doLogin();"> Login </button>
+        <button type="submit" class="btn btn-primary"> Login </button>
         <span id="loginResult"></span>
     </form>
 

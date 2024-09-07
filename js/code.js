@@ -31,7 +31,7 @@ function doLogin()
 	{
 		xhr.onreadystatechange = function() 
 		{
-			if (this.readyState == 4 && this.status == 200) it 
+			if (this.readyState == 4 && this.status == 200) 
 			{
 				let jsonObject = JSON.parse( xhr.responseText );
 				userId = jsonObject.id;
