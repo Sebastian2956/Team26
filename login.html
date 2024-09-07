@@ -7,19 +7,22 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <div class="wrapper">
-        <h1>Login</h1>
-        <form action="">
-            <label for="">Username</label>
-            <input type="text" placeholder="Username">
-            <br><br>
-            <label for="">Password</label>
-            <input type="password" placeholder="Password">
-            <br><br>
+    <div class="container">
+        <div class="wrapper">
+            <h1>Login</h1>
+            <form action="dashboard.html">
+                <!--<label for="">Username</label>-->
+                <input type="text" id="username" name="username" required placeholder="Username">
+                <br>
+                <!--<label for="">Password</label>-->
+                <input type="password" id="password" name="password" required placeholder="Password">                
 
-            <button type="submit">Login</button>
-            <!--<input type="Submit"> -->
-        </form>
+                <p>Don't have an account? <a href="#" id="register">Register</a></p>
+
+                <button type="submit">Login</button>
+                <!--<input type="Submit"> -->
+            </form>
+        </div>
     </div>
     <br>
     <!--<button onclick="window.location.href = 'index.html'">Home</button>-->

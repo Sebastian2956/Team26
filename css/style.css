@@ -2,47 +2,106 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Lucida Console', 'Courier New', monospace;
 }
 
 body {
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(#f5f5dc, #f0f0c0);
+    /*background: linear-gradient(#f5f5dc, #f0f0c0);*/
+    background-image: url('../loginBG.jpg');
+    background-size: cover;
+}
+
+.container {
+    width: 350px;
+    height: 350px;
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #fff;
+    
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: -1;
 }
 
 .wrapper {
-    width: 500px;
-    background-color: olive;
-    border-radius: 40px;
-    padding: 70px 50px;
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+    max-width: 250px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
 }
 
 label {
-    display: block;
+    font-size: 11px;
+
+    color: rgba(177, 177, 177, 0.3);
 }
 
 input {
-    width: 100%;
-    height: 50px;
+   /* width: 100%;
+    height: 30px;
     border: none;
     border-radius: 50px;
     margin: 10px 0;
-    padding-left: 30px;
+    padding-left: 30px; */
+
+    padding: 10px;
+    margin-top: 25px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid #fff;
+    color: black;
+    font-size: 12px;
 }
 
 button {
-    width: 100%;
-    height: 50px;
+    background: #fff;
+    color: black;
+    padding: 10px;
     border: none;
-    border-radius: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: transparent;
+    color: white;
+    outline: 1px solid #fff;
+}
+
+p {
+    font-size: 12px;
+    color: #131212;
+    margin-top: 15px;
 }
 
 h1 {
     text-align: center;
-    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-bottom: -5px;
+    color: white;
 }
 
 .dashboard-table {
