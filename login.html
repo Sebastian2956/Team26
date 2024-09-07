@@ -10,12 +10,13 @@
 <body class="mt-5 p-3 bg-light">
     <h1>login</h1>
     <form action="">
-        <input type="text" placeholder="email">
+        <input id="loginName" type="text" placeholder="Username">
         <br><br>
-        <input type="password" placeholder="password">
+        <input id="loginPassword" type="password" placeholder="Password">
         <br><br>
 
-        <button class="btn btn-primary" type="submit">Login</button>
+        <button type="button" class="btn btn-primary" onclick="doLogin();"> Login </button>
+        <span id="loginResult"></span>
     </form>
 
     <br>
