@@ -3,11 +3,8 @@
 	
 	$FirstName = $inData["FirstName"];
 	$LastName = $inData["LastName"];
-	$Phone = $inData["Phone"];
-	$Email = $inData["Email"];
-
-	//Do not think that this is needed but will keep
-	$userId = $inData["userId"]; #still need a way to get the current user's id to assign contact to this user
+	$Login = $inData["Login"];
+	$Password = $inData["Password"];
 
 	$conn = new mysqli("team26cm.seb.christmas/Team26", "Sebastian", "123456789", "ContactManager");
 	if ($conn->connect_error) 
@@ -17,13 +14,16 @@
 	else
 	{
 
-		//gets the current users ID
-		$CurrentUser = $_SESSION['Users'];
+        //get current user ID
+        $CurrentUser = $_SESSION['Users'];
 		$userId = $CurrentUser['ID'];
 
-
-		$stmt = $conn->prepare("INSERT into Contacts (FirstName, LastName, Phone, Email, UserID) VALUES(?,?,?,?,?)");
-		$stmt->bind_param("ssssi", $FirstName, $LastName, $Phone, $Email, $userId);
+        //alter current user with all new info given
+        #in the future could replace individual parts rather then full person
+		$stmt = $conn->prepare("ALTER Users $userId ");
+		$stmt->execute();
+        $stmt = $conn->prepare("WITH Users (FirstName, LastName, Login, Password) VALUES(?,?,?,?) ");
+        $stmt->bind_param("ssss", $FirstName, $LastName, $Login, $Password,);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
