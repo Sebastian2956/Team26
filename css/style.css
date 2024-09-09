@@ -18,14 +18,13 @@ body {
 
 .logincontainer{
     width: 400px;
-    height: 350px;
+    height: 300px;
     position: relative;
     z-index: 1;
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     border: 1px solid #fff;
-    
 }
 
 .regcontainer{
@@ -41,7 +40,7 @@ body {
 }
 
 .wrapper {
-    max-width: 250px;
+    max-width: 350px;
     margin: 0 auto;
     text-align: center;
 }
@@ -128,7 +127,7 @@ p {
 
 .wrapper h1 {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 40px;
     margin-bottom: -5px;
     color: white;
 }
