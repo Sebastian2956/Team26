@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="js/code.js"></script>
+    <script type="text/javascript" src="js/md5.js"></script>
     <title>Contact Manager</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -10,18 +12,19 @@
     <div class="logincontainer">
         <div class="wrapper">
             <h1>Login</h1>
-            <form action="dashboard.html">
-                <!--<label for="">Username</label>-->
-                <input type="text" id="username" name="username" required placeholder="Username">
-                <br>
-                <!--<label for="">Password</label>-->
-                <input type="password" id="password" name="password" required placeholder="Password">                
+                <div class="loginDiv">
+                    <!--<label for="">Username</label>-->
+                    <input type="text" id="loginUsername" name="username" required placeholder="Username">
+                    <br>
+                    <!--<label for="">Password</label>-->
+                    <input type="password" id="loginPassword" name="password" required placeholder="Password">                
 
-                <p id="regText">Don't have an account? <a href="#" id="register">Register</a></p>
+                    <p id="regText">Don't have an account? <a href="#" id="register">Register</a></p>
 
-                <button type="submit">Login</button>
-                <!--<input type="Submit"> -->
-            </form>
+                    <button type="button" id="loginButton" onclick="doLogin();">Login</button>
+                    <span id="loginResult"></span>
+                    <!--<input type="Submit"> -->
+                </div>
         </div>
     </div>
     <br>

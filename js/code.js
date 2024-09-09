@@ -11,7 +11,7 @@ function doLogin()
 	firstName = "";
 	lastName = "";
 	
-	let login = document.getElementById("loginName").value;
+	let login = document.getElementById("loginUsername").value;
 	let password = document.getElementById("loginPassword").value;
 //	var hash = md5( password );
 	
@@ -41,12 +41,17 @@ function doLogin()
 					return;
 				}
 		
-				firstName = jsonObject.firstName;
-				lastName = jsonObject.lastName;
+				firstName = jsonObject.FirstName;
+				lastName = jsonObject.LastName;
+
+				console.log(firstName);
+				console.log(lastName);
+
+				window.alert("Hey " + firstName + " " + lastName);
 
 				saveCookie();
 	
-				window.location.href = "color.html";
+				window.location.href = "dashboard.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -54,6 +59,7 @@ function doLogin()
 	catch(err)
 	{
 		document.getElementById("loginResult").innerHTML = err.message;
+		window.alert(err.message);
 	}
 
 }
