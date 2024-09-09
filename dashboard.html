@@ -2,47 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=
-    , initial-scale=1.0">
-    <title>Contact Manager Dashboard</title>
-    <link rel="stylesheet" href="./style/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <link rel="stylesheet" href="./css/dashStyle.css">
 </head>
 <body>
-    <h1>dashboard</h1>
 
-    <table class="dashboard-table">
-        <tr>
-            <th>id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Action</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>bob</td>
-            <td>bob ross</td>
-            <td>ucf@ucf.edu</td>
-            <td>1234567890</td>
-            <td>
-                <button>edit</button>
-                <br>
-                <button>delete</button>
-            </td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="email"></td>
-            <td><input type="number"></td>
-            <td>
-                <button>add</button>
-            </td>
-        </tr>
-    </table>
+    <!-- Header -->
+    <div class="header">
+        <h1>Contacts</h1>
+        <button class="round-button" title="Add New Contact">+</button>
+    </div>
 
-    <button onclick="window.location.href = 'index.html'">Home</button>
+    <div class="container">
+        <!-- Left Column: Dark Color Contact List -->
+        <div class="left">
+            <h3>Contact List</h3>
+            <ul class="contact-list">
+                <li onclick="showContactDetails(1)">Bob Ross</li>
+                <li onclick="showContactDetails(2)">Jane Doe</li>
+                <!-- Add more contacts as needed -->
+            </ul>
+        </div>
+
+        <!-- Right Column: Lighter Color Contact Details -->
+        <div class="right">
+            <h3>Contact Details</h3>
+            <div id="contact-details" class="contact-details">
+                <p><strong>First Name:</strong> <span id="first-name">Bob</span></p>
+                <p><strong>Last Name:</strong> <span id="last-name">Ross</span></p>
+                <p><strong>Email:</strong> <span id="email">ucf@ucf.edu</span></p>
+                <p><strong>Phone:</strong> <span id="phone">1234567890</span></p>
+                <button type="button">Delete Contact</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // JavaScript function to show contact details (this will eventually pull data from your database)
+    function showContactDetails(id) {
+        // For now, this is just an example for one contact
+        if (id === 1) {
+            document.getElementById('first-name').textContent = 'Bob';
+            document.getElementById('last-name').textContent = 'Ross';
+            document.getElementById('email').textContent = 'ucf@ucf.edu';
+            document.getElementById('phone').textContent = '1234567890';
+        } else if (id === 2) {
+            document.getElementById('first-name').textContent = 'Jane';
+            document.getElementById('last-name').textContent = 'Doe';
+            document.getElementById('email').textContent = 'jane.doe@example.com';
+            document.getElementById('phone').textContent = '0987654321';
+        }
+    }
+    </script>
 </body>
 </html>
