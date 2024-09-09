@@ -112,3 +112,20 @@ button {
     cursor: pointer;
     margin-top: 15px;
 }
+
+.search {
+    width: max-content;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 15px;
+    padding-left: 43%;
+}
+
+.search-input {
+    font-size: 16px;
+    font-family: 'Lexend', sans-serif;
+    outline: none;
+    border: none;
+    background: transparent;
+}
