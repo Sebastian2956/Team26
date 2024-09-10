@@ -9,7 +9,7 @@
 	//Do not think that this is needed but will keep
 	$userId = $inData["userId"]; #still need a way to get the current user's id to assign contact to this user
 
-	$conn = new mysqli("team26cm.seb.christmas/Team26", "Sebastian", "123456789", "ContactManager");
+	$conn = new mysqli("localhost", "Sebastian", "123456789", "ContactManager");
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );

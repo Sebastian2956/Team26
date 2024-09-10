@@ -8,7 +8,7 @@
 
 	$OldPhone = $inData["Phone"];
 
-	$conn = new mysqli("team26cm.seb.christmas/Team26", "Sebastian", "123456789", "ContactManager");
+	$conn = new mysqli("localhost", "Sebastian", "123456789", "ContactManager");
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
