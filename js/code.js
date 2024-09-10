@@ -5,6 +5,7 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+// working on local XAMPP server
 function doLogin()
 {
 	userId = 0;
@@ -59,6 +60,60 @@ function doLogin()
 	catch(err)
 	{
 		document.getElementById("loginResult").innerHTML = err.message;
+		window.alert(err.message);
+	}
+
+}
+
+// work in progress
+function doRegister()
+{
+	console.log("doRegister working");
+	let firstName = document.getElementById("registerFirstName").value;
+	let lastName = document.getElementById("registerLastName").value;
+	let login = document.getElementById("registerUsername").value;
+	let password = document.getElementById("registerPassword").value;
+//	var hash = md5( password );
+	
+	document.getElementById("registerResult").innerHTML = "";
+
+	let tmp = {FirstName:firstName,LastName:lastName,login:login,password:password};
+
+//	var tmp = {login:login,password:hash};
+	let jsonPayload = JSON.stringify( tmp );
+	
+	let url = urlBase + '/AddUser.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				userId = jsonObject.id;
+		
+				if( jsonObject.error !== "" )
+				{		
+					document.getElementById("registerResult").innerHTML = jsonObject.error;
+					return;
+				}
+
+				window.alert("Successful Registeration");
+
+				saveCookie();
+	
+				window.location.href = "login.html";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("registerResult").innerHTML = err.message;
 		window.alert(err.message);
 	}
 
