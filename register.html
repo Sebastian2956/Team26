@@ -10,7 +10,11 @@
     <div class="regcontainer">
         <div class="wrapper">
             <h1 id="newAccount">Create New Account</h1>
-            <form action="">
+            <div class="registerDiv">
+                <!-- TODO -->
+                <!-- might have to split up name into first & last inputs-->
+                <!-- use email for username? or seperate input for login?-->
+                 <!-- change id's for input based on code.js doRegister() names -->
                 <label for="">Name</label>
                 <input type="text" id ="name" placeholder="John Doe">
                 <br><br>
@@ -21,8 +25,9 @@
                 <input type="password" id = "password" placeholder="Password">
                 <br><br>
 
-                <button type="submit">Register</button>
-            </form>
+                <button type="button" id="registerButton" onclick="doRegister();">Register</button>
+                <span id="registerResult"></span>
+            </div>
         </div>
     </div>
     <br>
