@@ -1,7 +1,7 @@
 # Team26
 Team 26 Contact Manager
 
-www.team26cm.seb.christmas.com
+team26cm.seb.christmas
 
 Hello everyone this is a change
 This is changed from github
