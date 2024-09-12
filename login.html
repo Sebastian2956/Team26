@@ -16,11 +16,13 @@
                     <!--<label for="">Username</label>-->
                     <input type="text" id="loginUsername" name="username" required placeholder="Username">
                     <!--<label for="">Password</label>-->
+                    <input type="password" id="loginPassword" name="password" required placeholder="Password">
                     <br>
-                    <input type="password" id="loginPassword" name="password" required placeholder="Password">                
+                    <input type="password" id="loginPassword" name="password" required placeholder="Password">
 
                     <p id="regText">Don't have an account? <a href="#" id="register">Register</a></p>
 
+                    <!-- TODO: calls the doLogin() function from code.js -->
                     <button type="button" id="loginButton" onclick="doLogin();">Login</button>
                     <span id="loginResult"></span>
                     <!--<input type="Submit"> -->
