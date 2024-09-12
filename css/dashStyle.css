@@ -114,6 +114,10 @@ button {
     margin-bottom: 5px;
 }
 
+button:hover {
+    background-color: gray;
+}
+
 .search {
     width: max-content;
     display: flex;
