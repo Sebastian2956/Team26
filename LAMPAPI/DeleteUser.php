@@ -13,18 +13,25 @@
         $CurrentUser = $_SESSION['Users'];
         $userId = $CurrentUser['ID'];
 
-        $stmt = $conn->prepare("DELETE FROM Users WHERE id = ?");
-        $stmt->bind_param("i", $UserId);
-        $stmt->execute();
+        // Delete contacts associated with the user
+        $stmtContacts = $conn->prepare("DELETE FROM Contacts WHERE UserID = ?");
+        $stmtContacts->bind_param("i", $userId);
+        $stmtContacts->execute();
+        $stmtContacts->close();
 
-        // Check if any rows were affected
-        if ($stmt->affected_rows > 0) {
-            returnWithInfo("User deleted successfully");
+        // Delete the user
+        $stmtUser = $conn->prepare("DELETE FROM Users WHERE ID = ?");
+        $stmtUser->bind_param("i", $userId);
+        $stmtUser->execute();
+
+        // Check if the user was deleted
+        if ($stmtUser->affected_rows > 0) {
+            returnWithInfo("User and associated contacts deleted successfully");
         } else {
-            returnWithError("No user found with the given ID");
+            returnWithError("User not found");
         }
-        
-        $stmt->close();
+
+        $stmtUser->close();
         $conn->close();
         returnWithError("");
     }
