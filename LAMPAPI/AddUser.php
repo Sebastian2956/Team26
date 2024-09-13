@@ -3,10 +3,10 @@
 	
 	$FirstName = $inData["FirstName"];
 	$LastName = $inData["LastName"];
-	$Login = $inData["Login"];
-	$Password = $inData["Password"];
+	$Login = $inData["login"];
+	$Password = $inData["password"];
 
-	$conn = new mysqli("localhost", "Sebastian", "123456789", "ContactManager");
+	$conn = new mysqli("localhost", "root", "", "ContactManager");
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
