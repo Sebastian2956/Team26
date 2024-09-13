@@ -1,7 +1,5 @@
-
 <?php
 
-  echo "php is running";
 
 //this receives the data from the code.js function, (doLogin())
 	$inData = getRequestInfo();
@@ -10,8 +8,7 @@
 	$FirstName = "";
 	$LastName = "";
 
-                      //TODO: change to server database for production
-	$conn = new mysqli("localhost", "Sebastian", "123456789", "ContactManager");
+	$conn = new mysqli("localhost", "Sebastian", "123456789", "ContactManager"); 
 	if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );
