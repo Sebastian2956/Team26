@@ -17,7 +17,7 @@ body {
 }
 
 .logincontainer{
-    width: 400px;
+    width: 350px;
     height: 300px;
     position: relative;
     z-index: 1;
@@ -101,6 +101,7 @@ input{
 
 #regText{
     color: white;
+    margin-top: 20px;
 }
 
 button {
@@ -110,7 +111,7 @@ button {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 button:hover {
@@ -127,8 +128,8 @@ p {
 
 .wrapper h1 {
     text-align: center;
-    margin-top: 40px;
-    margin-bottom: -5px;
+    margin-top: 30px;
+    margin-bottom: 0px;
     color: white;
 }
 
