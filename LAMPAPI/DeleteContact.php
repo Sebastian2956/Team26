@@ -1,30 +1,27 @@
 <?php
 
-  $inData = getRequestInfo();
+	$inData = getRequestInfo();
 
-  $UserID = $inData["id"];
+	$contactID = $inData["id"];
 
 
 	$conn = new mysqli("localhost", "Sebastian", "123456789", "ContactManager");
-  if ($conn->connect_error)
-  {
-    returnWithError($conn->connect_error);
-  }
-  else
-  {
+	if ($conn->connect_error)
+	{
+		returnWithError($conn->connect_error);
+	}
+	else
+	{
+		$CurrentUser = $_SESSION['Users'];
+		$userID = $CurrentUser['ID'];
 
-    //this is going to be needed to remove the contacts from the specific user's account
-		//gets the current users ID
-  //   $CurrentUser = $_SESSION['Users'];
-		// $userId = $CurrentUser['ID'];
-
-    $stmt = $conn->prepare("DELETE FROM Contacts WHERE id = (UserID) VALUES(?)");
-    $stmt->bind_param("i", $UserID);
+		$stmt = $conn->prepare("DELETE FROM Contacts WHERE ID = ? AND UserID = ?");
+		$stmt->bind_param("ii", $contactID, $userID);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
 		returnWithError("");
-  }
+	}
 
 	function getRequestInfo()
 	{
@@ -40,12 +37,6 @@
 	function returnWithError( $err )
 	{
 		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
-	}
-
-	function returnWithInfo( $searchResults )
-	{
-		$retValue = '{"results":[' . $searchResults . '],"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 
