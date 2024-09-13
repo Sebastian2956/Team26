@@ -17,6 +17,12 @@
 	else
 	{
 
+
+		if($_POST[$FirstName] =='' || $_POST[$LastName] =='' || $_POST[$Phone] =='' || $_POST[$Email] =='')
+		{
+			returnWithError("One or more fields not filled out");
+		}
+
 		//gets the current users ID
 		$CurrentUser = $_SESSION['Users'];
 		$userId = $CurrentUser['ID'];
