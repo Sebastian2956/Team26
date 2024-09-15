@@ -1,6 +1,6 @@
 <?php
 	$inData = getRequestInfo();
-	
+
 	$FirstName = $inData["FirstName"];
 	$LastName = $inData["LastName"];
 	$Phone = $inData["Phone"];
@@ -9,11 +9,12 @@
 	//Do not think that this is needed but will keep
 	$userId = $inData["userId"]; #still need a way to get the current user's id to assign contact to this user
 
+  //TODO: This needs to be updated with the correct connection point
 	$conn = new mysqli("localhost", "Sebastian", "123456789", "ContactManager");
-	if ($conn->connect_error) 
+	if ($conn->connect_error)
 	{
 		returnWithError( $conn->connect_error );
-	} 
+	}
 	else
 	{
 
@@ -46,11 +47,11 @@
 		header('Content-type: application/json');
 		echo $obj;
 	}
-	
+
 	function returnWithError( $err )
 	{
 		$retValue = '{"error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
+
 ?>

@@ -3,6 +3,7 @@
     $inData = getRequestInfo();
 
 
+  //TODO: This needs to be updated with the correct connection point
 	$conn = new mysqli("localhost", "Sebastian", "123456789", "ContactManager");
     if ($conn->connect_error)
     {

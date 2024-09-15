@@ -1,19 +1,20 @@
 <?php
 	$inData = getRequestInfo();
-	
+
 
 	$FirstName = $inData["FirstName"];
 	$LastName = $inData["LastName"];
 	$Login = $inData["login"];
 	$Password = $inData["password"];
 
+  //TODO: This needs to be updated with the correct connection point
 	$conn = new mysqli("localhost", "root", "", "ContactManager");
 
-	
-	if ($conn->connect_error) 
+
+	if ($conn->connect_error)
 	{
 		returnWithError( $conn->connect_error );
-	} 
+	}
 	else
 	{
 
@@ -41,11 +42,11 @@
 		header('Content-type: application/json');
 		echo $obj;
 	}
-	
+
 	function returnWithError( $err )
 	{
 		$retValue = '{"error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
+
 ?>

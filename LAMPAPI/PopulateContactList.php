@@ -1,7 +1,7 @@
 <?php
 
 	$inData = getRequestInfo();
-	//TODO: this connection will have to be updated
+  //TODO: This needs to be updated with the correct connection point
 	$conn = new mysqli("localhost", "root", "", "ContactManager");
 	if( $conn->connect_error )
 	{
@@ -21,7 +21,7 @@
 		}
 		//This echo is how we have been returning the data so far
 		echo json_encode($array);
-    
+
 		$stmt->close();
 		$conn->close();
 	}

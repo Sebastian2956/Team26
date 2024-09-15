@@ -1,11 +1,39 @@
-const urlBase = 'http://localhost/Team26/LAMPAPI';
+// TODO: this url will have to be updated
+const urlBase = 'http://localhost/LAMPAPI';
 const extension = 'php';
 
-let userId = 0;
+var userId = 0;
 let firstName = "";
 let lastName = "";
 
-// working on local XAMPP server
+function doPopulate()
+{
+    //this retrieves the session's cookies (userId won't be 0)
+    readCookie();
+
+
+    let tmp = {userID:userId};
+    let jsonPayload = JSON.stringify(tmp);
+
+    let xhr = new XMLHttpRequest();
+
+    //finds the php file to run
+    xhr.open("POST", urlBase + "/PopulateContactList.php", true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    // when the request loads this will parse the reponse
+    xhr.onload = function() {
+	if (xhr.status === 200) {
+	    let response = JSON.parse(xhr.responseText);
+	    console.log(response);
+	} else {
+	    console.error('Request failed. Status: ' + xhr.status);
+	}
+    }
+    xhr.send(jsonPayload);
+}
+
+
 function doLogin()
 {
 	userId = 0;
@@ -22,13 +50,14 @@ function doLogin()
   //creates javascript struct
   //this is a struct
 	let tmp = {login:login,password:password};
-//	var tmp = {login:login,password:hash};
+  //	var tmp = {login:login,password:hash};
   // converts the struct to a json blob
 	let jsonPayload = JSON.stringify( tmp );
 
   //this is just a window alert
   window.alert("This: " + jsonPayload);
 
+  //this picks the php file
 	let url = urlBase + '/Login.' + extension;
 
   //this is what actually creates the post request (AJAX)
@@ -58,7 +87,7 @@ function doLogin()
 				console.log(firstName);
 				console.log(lastName);
 
-				window.alert("Hey " + firstName + " " + lastName);
+				window.alert("Hey " + firstName + " " + lastName + " " + jsonObject.id);
 
 				saveCookie();
 
@@ -74,6 +103,9 @@ function doLogin()
 		window.alert(err.message);
 	}
 
+
+    // TODO: Testing
+    // window.userId = 255;
 }
 
 // work in progress
@@ -145,7 +177,7 @@ function readCookie()
 	let splits = data.split(",");
 	for(var i = 0; i < splits.length; i++)
 	{
-		let thisOne = splits[i].trim();
+	    let thisOne = splits[i].trim();
 		let tokens = thisOne.split("=");
 		if( tokens[0] == "firstName" )
 		{
@@ -169,6 +201,7 @@ function readCookie()
 	{
 //		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
+
 }
 
 function doLogout()

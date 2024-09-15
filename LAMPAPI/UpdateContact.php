@@ -1,6 +1,6 @@
 <?php
 	$inData = getRequestInfo();
-	
+
 	$FirstName = $inData["FirstName"];
 	$LastName = $inData["LastName"];
 	$Phone = $inData["Phone"];
@@ -8,24 +8,25 @@
 
 	$OldPhone = $inData["Phone"];
 
+	//TODO: this connection will have to be updated
 	$conn = new mysqli("localhost", "Sebastian", "123456789", "ContactManager");
-	if ($conn->connect_error) 
+	if ($conn->connect_error)
 	{
 		returnWithError( $conn->connect_error );
-	} 
+	}
 	else
 	{
 
         //get current user ID
         $CurrentUser = $_SESSION['Users'];
 		$userId = $CurrentUser['ID'];
-        
+
         //get which contact you want changed
 		$stmt = $conn->prepare("select FirstName from Contacts where Phone like ? and UserID=?");
 		$OldPhone = "%" . $inData["search"] . "%";
 		$stmt->bind_param("ss", $OldPhone, $inData["userId"]);
 		$stmt->execute();
-		
+
 		$result = $stmt->get_result();
 
 
@@ -51,11 +52,11 @@
 		header('Content-type: application/json');
 		echo $obj;
 	}
-	
+
 	function returnWithError( $err )
 	{
 		$retValue = '{"error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
+
 ?>
