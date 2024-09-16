@@ -4,8 +4,8 @@
 
 	$FirstName = $inData["FirstName"];
 	$LastName = $inData["LastName"];
-	$Login = $inData["Login"];
-	$Password = $inData["Password"];
+	$Login = $inData["login"];
+	$Password = $inData["password"];
 
   //TODO: This needs to be updated with the correct connection point
 	$conn = new mysqli("localhost", "Sebastian", "123456789", "ContactManager");
