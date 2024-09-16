@@ -1,5 +1,7 @@
 // TODO: this url will have to be updated
-const urlBase = 'http://localhost/LAMPAPI';
+// testing locally: http://localhost/Team26/LAMPAPI
+// production : http://team26cm.seb.christmas/Team26/LAMPAPI
+const urlBase = 'http://localhost/Team26/LAMPAPI';
 const extension = 'php';
 
 var userId = 0;
@@ -12,7 +14,7 @@ function doPopulate()
     readCookie();
 
 
-    let tmp = {userID:userId};
+    let tmp = {userId:userId};
     let jsonPayload = JSON.stringify(tmp);
 
     let xhr = new XMLHttpRequest();
@@ -23,15 +25,48 @@ function doPopulate()
 
     // when the request loads this will parse the reponse
     xhr.onload = function() {
-	if (xhr.status === 200) {
-	    let response = JSON.parse(xhr.responseText);
-	    console.log(response);
-	} else {
-	    console.error('Request failed. Status: ' + xhr.status);
-	}
-    }
+		if (xhr.status === 200) {
+			let contacts = JSON.parse(xhr.responseText);
+			console.log(contacts);
+
+            // retrieve contact-list
+            let contactList = document.getElementById("contact-list");
+
+            // clear previous content
+            contactList.innerHTML = '';
+
+            // loop through each contact and add to list
+            contacts.forEach(contact => {
+                let li = document.createElement("li");
+
+                // create li fullname string
+                li.textContent = `${contact.FirstName} ${contact.LastName}`;
+
+                // wip
+                // li.onclick = function() {
+                //     showContactDetails(contact);
+                // };
+
+                // append item to list
+                contactList.appendChild(li);
+            });
+        } else {
+            console.error('Request failed. Status: ' + xhr.status);
+        }
+    };
+
     xhr.send(jsonPayload);
 }
+
+// wip
+// function showContactDetails(contact) {
+// 	document.getElementById('FirstName').textContent;
+// 	document.getElementById('LastName').textContent;
+// 	document.getElementById('email').textContent;
+// 	document.getElementById('phone').textContent;
+
+// }
+
 
 function doSearch()
 {

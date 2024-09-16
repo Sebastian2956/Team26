@@ -28,9 +28,7 @@
         <div class="left">
             <h3>Contact List</h3>
             <button class="round-button" title="Add New Contact">+</button>
-            <ul class="contact-list">
-                <li onclick="showContactDetails(1)">Bob Ross</li>
-                <li onclick="showContactDetails(2)">Jane Doe</li>
+            <ul class="contact-list" id="contact-list">
                 <!-- Add more contacts as needed -->
             </ul>
         </div>
@@ -39,35 +37,24 @@
         <div class="right">
             <h3>Contact Details</h3>
             <div id="contact-details" class="contact-details">
-                <p><strong>First Name:</strong> <span id="first-name">Bob</span></p>
-                <p><strong>Last Name:</strong> <span id="last-name">Ross</span></p>
-                <p><strong>Email:</strong> <span id="email">ucf@ucf.edu</span></p>
-                <p><strong>Phone:</strong> <span id="phone">1234567890</span></p>
+                <p><strong>First Name:</strong> <span id="first-name">N/A</span></p>
+                <p><strong>Last Name:</strong> <span id="last-name">N/A</span></p>
+                <p><strong>Email:</strong> <span id="email">N/A</span></p>
+                <p><strong>Phone:</strong> <span id="phone">N/A</span></p>
                 <!--<button type="button">Delete Contact</button>
                 <button type="button">Edit</button>-->
                 <button type="button" id="deleteButton" onclick="doDelete();">Delete</button>
                 <button type="button" id="editButton" onclick="doEdit();">Edit</button>
-                <button type="button" id="editButton" onclick="doPopulate();">populate</button>
+                <script>
+                    window.onload = function() {
+                        doPopulate();
+                    };
+                </script>
             </div>
         </div>
     </div>
 
     <script>
-    // JavaScript function to show contact details (this will eventually pull data from your database)
-    function showContactDetails(id) {
-        // For now, this is just an example for one contact
-        if (id === 1) {
-            document.getElementById('first-name').textContent = 'Bob';
-            document.getElementById('last-name').textContent = 'Ross';
-            document.getElementById('email').textContent = 'ucf@ucf.edu';
-            document.getElementById('phone').textContent = '1234567890';
-        } else if (id === 2) {
-            document.getElementById('first-name').textContent = 'Jane';
-            document.getElementById('last-name').textContent = 'Doe';
-            document.getElementById('email').textContent = 'jane.doe@example.com';
-            document.getElementById('phone').textContent = '0987654321';
-        }
-    }
     </script>
 </body>
 </html>
