@@ -2,43 +2,31 @@
 
 	$inData = getRequestInfo();
 
-	$searchResults = "";
-	$searchCount = 0;
+	$searchElement = "";
+	$userId = 0;
 
 	//TODO: this connection will have to be updated
-	$conn = new mysqli("localhost", "Sebastian", "123456789", "ContactManager");
+	$conn = new mysqli("localhost", "root", "", "ContactManager");
 	if ($conn->connect_error)
 	{
 		returnWithError( $conn->connect_error );
 	}
 	else
 	{
-		$stmt = $conn->prepare("select * from Contacts where FirstName like ? and UserID=?");
-		$FirstName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("ss", $FirstName, $inData["userId"]);
+		$searchElement = $inData["searchElement"];
+		$array = array();
+		//gets results from first and last name
+		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE (FirstName LIKE ? AND UserID=?) OR (LastName LIKE ? AND UserID=?);");
+		$searchElement = "%" . $inData["searchElement"] . "%";
+		$stmt->bind_param("sisi", $searchElement, $inData["userId"], $searchElement, $inData["userId"]);
 		$stmt->execute();
-
 		$result = $stmt->get_result();
-
 		while($row = $result->fetch_assoc())
 		{
-			if( $searchCount > 0 )
-			{
-				$searchResults .= ",";
-			}
-			$searchCount++;
-			$searchResults .= '"' . $row["FirstName"] . ' ' . $row["LastName"] . ' ' . $row["Phone"] . ' ' . $row["Email"] . '"';
+			$array[] = $row;
 		}
 
-		if( $searchCount == 0 )
-		{
-			returnWithError( "No Records Found" );
-		}
-		else
-		{
-			returnWithInfo( $searchResults );
-		}
-
+		sendResultInfoAsJson(json_encode($array));
 		$stmt->close();
 		$conn->close();
 	}

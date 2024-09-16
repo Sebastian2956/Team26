@@ -1,5 +1,5 @@
 // TODO: this url will have to be updated
-const urlBase = 'http://Team26CM.seb.christmas/Team26/LAMPAPI';
+const urlBase = 'http://localhost/LAMPAPI';
 const extension = 'php';
 
 var userId = 0;
@@ -33,6 +33,34 @@ function doPopulate()
     xhr.send(jsonPayload);
 }
 
+function doSearch()
+{
+    //this retrieves the session's cookies (userId won't be 0)
+    readCookie();
+
+    //The id tag will have to be searchElement if you want this search to work
+    let searchElement = document.getElementById("searchElement").value;
+
+    let tmp = {userID:userId,searchElement:searchElement};
+    let jsonPayload = JSON.stringify(tmp);
+
+    let xhr = new XMLHttpRequest();
+
+    //finds the php file to run
+    xhr.open("POST", urlBase + "/SearchContacts.php", true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    // when the request loads this will parse the reponse
+    xhr.onload = function() {
+	if (xhr.status === 200) {
+	    let response = JSON.parse(xhr.responseText);
+	    console.log(response);
+	} else {
+	    console.error('Request failed. Status: ' + xhr.status);
+	}
+    }
+    xhr.send(jsonPayload);
+}
 
 function doLogin()
 {
