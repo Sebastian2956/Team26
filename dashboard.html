@@ -14,7 +14,8 @@
     <!-- Header -->
     <div class="header">
         <h1>Contacts</h1>
-        <button class="round-button" title="Add New Contact">+</button>
+        <button type="button" id="logoutButton" onclick="doLogout();">Logout</button>
+        <!--<button class="round-button" title="Add New Contact">+</button>-->
     </div>
 
     <div class="search">
@@ -26,6 +27,7 @@
         <!-- Left Column: Dark Color Contact List -->
         <div class="left">
             <h3>Contact List</h3>
+            <button class="round-button" title="Add New Contact">+</button>
             <ul class="contact-list">
                 <li onclick="showContactDetails(1)">Bob Ross</li>
                 <li onclick="showContactDetails(2)">Jane Doe</li>
