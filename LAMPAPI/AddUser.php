@@ -4,11 +4,11 @@
 
 	$FirstName = $inData["FirstName"];
 	$LastName = $inData["LastName"];
-	$Login = $inData["login"];
-	$Password = $inData["password"];
+	$Login = $inData["Login"];
+	$Password = $inData["Password"];
 
   //TODO: This needs to be updated with the correct connection point
-	$conn = new mysqli("localhost", "root", "", "ContactManager");
+	$conn = new mysqli("localhost", "Sebastian", "123456789", "ContactManager");
 
 
 	if ($conn->connect_error)
@@ -18,19 +18,37 @@
 	else
 	{
 
-		if($_POST[$FirstName] =='' || $_POST[$LastName] =='' || $_POST[$Login] =='' || $_POST[$Password] =='')
+		if(empty($FirstName) || empty($LastName) || empty($Login) || empty($Password))
 		{
 			returnWithError("One or more fields not filled out");
 		}
 
 
-		$stmt = $conn->prepare("INSERT into Users (FirstName, LastName, Login, Password) VALUES(?,?,?,?)");
-		$stmt->bind_param("ssss", $FirstName, $LastName, $Login, $Password);
-		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
+		// Check if the Login already exists
+		$checkLoginStmt = $conn->prepare("SELECT * FROM Users WHERE Login = ?");
+		$checkLoginStmt->bind_param("s", $Login);
+		$checkLoginStmt->execute();
+		$result = $checkLoginStmt->get_result();
+
+		// If the login exists, return an error
+		if ($result->num_rows > 0)
+		{
+			returnWithError("Login name already exists");
+		}
+		else
+		{
+			$stmt = $conn->prepare("INSERT into Users (FirstName, LastName, Login, Password) VALUES(?,?,?,?)");
+			$stmt->bind_param("ssss", $FirstName, $LastName, $Login, $Password);
+			if ($stmt->execute()) {
+				returnWithError(""); // Successful insert, no error
+			} else {
+				returnWithError("Error inserting user");
+			}
+			$stmt->close();
+		}
+		$checkLoginStmt->close();
 	}
+	$conn->close();
 
 	function getRequestInfo()
 	{

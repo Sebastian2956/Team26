@@ -1,5 +1,5 @@
 // TODO: this url will have to be updated
-const urlBase = 'http://localhost/LAMPAPI';
+const urlBase = 'http://Team26CM.seb.christmas/Team26/LAMPAPI';
 const extension = 'php';
 
 var userId = 0;

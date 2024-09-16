@@ -9,7 +9,7 @@
 	$LastName = "";
 
   //TODO: This needs to be updated with the correct connection point
-	$conn = new mysqli("localhost", "root", "", "ContactManager");
+	$conn = new mysqli("localhost", "Sebastian", "123456789", "ContactManager");
 	if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );

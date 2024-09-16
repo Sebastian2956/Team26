@@ -24,17 +24,9 @@
         $stmtUser = $conn->prepare("DELETE FROM Users WHERE ID = ?");
         $stmtUser->bind_param("i", $userId);
         $stmtUser->execute();
-
-        // Check if the user was deleted
-        if ($stmtUser->affected_rows > 0) {
-            returnWithInfo("User and associated contacts deleted successfully");
-        } else {
-            returnWithError("User not found");
-        }
-
         $stmtUser->close();
         $conn->close();
-        returnWithError("");
+	returnWithError("");
     }
 
 	function getRequestInfo()

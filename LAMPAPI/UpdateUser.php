@@ -15,16 +15,16 @@
 	else
 	{
 
-        //get current user ID
-        $CurrentUser = $_SESSION['Users'];
+        	//get current user ID
+        	$CurrentUser = $_SESSION['Users'];
 		$userId = $CurrentUser['ID'];
 
-        //alter current user with all new info given
-        #in the future could replace individual parts rather then full person
-		$stmt = $conn->prepare("ALTER Users $userId ");
-		$stmt->execute();
-        $stmt = $conn->prepare("WITH Users (FirstName, LastName, Login, Password) VALUES(?,?,?,?) ");
-        $stmt->bind_param("ssss", $FirstName, $LastName, $Login, $Password,);
+        	//alter current user with all new info given
+        	//in the future could replace individual parts rather then full person
+		$stmt = $conn->prepare("UPDATE Users SET FirstName = ?, LastName = ?, Login = ?, Password = ? WHERE ID = ?");
+		// Bind the parameters (s = string, i = integer)
+		$stmt->bind_param("ssssi", $FirstName, $LastName, $Login, $Password, $userId);
+
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
