@@ -96,6 +96,9 @@ html,body {
     justify-content: center;
     align-items: center;
     font-size: 16px;
+    position: relative;
+    top: -50px;
+    right: -110px;
 }
 
 /* Optional hover effect */
