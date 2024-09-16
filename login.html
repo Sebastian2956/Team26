@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="js/code.js"></script>
+    <script type="text/javascript" src="js/md5.js"></script>
+    <title>Contact Manager</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="logincontainer">
+        <div class="wrapper">
+            <h1>Login</h1>
+                <div class="loginDiv">
+                    <!--<label for="">Username</label>-->
+                    <input type="text" id="loginUsername" name="username" required placeholder="Username">
+                    <!--<label for="">Password</label>-->
+                    <br>
+                    <input type="password" id="loginPassword" name="password" required placeholder="Password">
+                    <br>
+
+                    <p id="regText">Don't have an account? <a href="register.html" id="register">Register</a></p>
+
+                    <!-- TODO: calls the doLogin() function from code.js -->
+                    <button type="button" id="loginButton" onclick="doLogin();">Login</button>
+                    <span id="loginResult"></span>
+                    <!--<input type="Submit"> -->
+                </div>
+        </div>
+    </div>
+    <!--<button onclick="window.location.href = 'index.html'">Home</button>-->
+</body>
+</html>

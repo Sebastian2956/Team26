@@ -6,7 +6,6 @@
 	$Phone = $inData["Phone"];
 	$Email = $inData["Email"];
 
-	$OldPhone = $inData["Phone"];
 
 	//TODO: this connection will have to be updated
 	$conn = new mysqli("localhost", "Sebastian", "123456789", "ContactManager");
@@ -17,29 +16,34 @@
 	else
 	{
 
-        //get current user ID
-        $CurrentUser = $_SESSION['Users'];
-		$userId = $CurrentUser['ID'];
+        	//checks if in testing mode for swaggerhub for the source of userId. Either from session or input from swaggerhub
+                $testingMode = isset($inData['testing']) && $inData['testing'] === true;
 
-        //get which contact you want changed
-		$stmt = $conn->prepare("select FirstName from Contacts where Phone like ? and UserID=?");
-		$OldPhone = "%" . $inData["search"] . "%";
-		$stmt->bind_param("ss", $OldPhone, $inData["userId"]);
+                if ($testingMode && isset($inData['userId'])) {
+                $userId = $inData['userId'];
+                } else if (isset($_SESSION['Users']) && isset($_SESSION['Users']['ID'])) {
+                $userId = $_SESSION['Users']['ID'];
+                }else {
+                returnWithError("User ID not available in session or request body");
+                }
+
+        	//get ID of contact you want changed
+		$stmt = $conn->prepare("select ID from Contacts where FirstName like ? AND UserID=?");
+		$name = "%" . $FirstName . "%";
+		$stmt->bind_param("ss", $name, $userId);
 		$stmt->execute();
-
 		$result = $stmt->get_result();
-
-
-        //alter specfic user with all new info given
-        #in the future could replace individual parts rather then full person
-		$stmt = $conn->prepare("ALTER Contacts $result ");
-		$stmt->execute();
-        $stmt = $conn->prepare("WITH Contacts INSERT into Contacts (FirstName, LastName, Phone, Email, UserID) VALUES(?,?,?,?,?) ");
-        $stmt->bind_param("ssss", $FirstName, $LastName, $Login, $Password,);
+		$result_row = $result->fetch_assoc();
+		$contactId = $result_row['ID'];
+        	//alter specfic user with all new info given
+        	//in the future could replace individual parts rather then full person
+		$stmt = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE ID = ?");
+                // Bind the parameters (s = string, i = integer)
+                $stmt->bind_param("ssssi", $FirstName, $LastName, $Email, $Phone, $contactId);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
-		returnWithError("");
+		returnWithError('');
 	}
 
 	function getRequestInfo()

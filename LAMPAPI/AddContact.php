@@ -6,9 +6,6 @@
 	$Phone = $inData["Phone"];
 	$Email = $inData["Email"];
 
-	//Do not think that this is needed but will keep
-	$userId = $inData["userId"]; #still need a way to get the current user's id to assign contact to this user
-
   //TODO: This needs to be updated with the correct connection point
 	$conn = new mysqli("localhost", "Sebastian", "123456789", "ContactManager");
 	if ($conn->connect_error)
@@ -19,15 +16,21 @@
 	{
 
 
-		if($_POST[$FirstName] =='' || $_POST[$LastName] =='' || $_POST[$Phone] =='' || $_POST[$Email] =='')
+		if(empty($FirstName) || empty($LastName) || empty($Phone) || empty($Email))
 		{
 			returnWithError("One or more fields not filled out");
 		}
 
-		//gets the current users ID
-		$CurrentUser = $_SESSION['Users'];
-		$userId = $CurrentUser['ID'];
+		//checks if in testing mode for swaggerhub for the source of userId. Either from session or input from swaggerhub
+                $testingMode = isset($inData['testing']) && $inData['testing'] === true;
 
+                if ($testingMode && isset($inData['userId'])) {
+                $userId = $inData['userId'];
+                } else if (isset($_SESSION['Users']) && isset($_SESSION['Users']['ID'])) {
+                $userId = $_SESSION['Users']['ID'];
+                }else {
+                returnWithError("User ID not available in session or request body");
+                }
 
 		$stmt = $conn->prepare("INSERT into Contacts (FirstName, LastName, Phone, Email, UserID) VALUES(?,?,?,?,?)");
 		$stmt->bind_param("ssssi", $FirstName, $LastName, $Phone, $Email, $userId);

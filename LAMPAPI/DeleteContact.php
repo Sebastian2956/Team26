@@ -5,7 +5,7 @@
 	$contactID = $inData["id"];
 
 
-  //TODO: This needs to be updated with the correct connection point
+  	//TODO: This needs to be updated with the correct connection point
 	$conn = new mysqli("localhost", "Sebastian", "123456789", "ContactManager");
 	if ($conn->connect_error)
 	{
@@ -13,8 +13,16 @@
 	}
 	else
 	{
-		$CurrentUser = $_SESSION['Users'];
-		$userID = $CurrentUser['ID'];
+		//checks if in testing mode for swaggerhub for the source of userId. Either from session or input from swaggerhub
+                $testingMode = isset($inData['testing']) && $inData['testing'] === true;
+
+                if ($testingMode && isset($inData['userId'])) {
+                $userId = $inData['userId'];
+                } else if (isset($_SESSION['Users']) && isset($_SESSION['Users']['ID'])) {
+                $userId = $_SESSION['Users']['ID'];
+                }else {
+                returnWithError("User ID not available in session or request body");
+                }
 
 		$stmt = $conn->prepare("DELETE FROM Contacts WHERE ID = ? AND UserID = ?");
 		$stmt->bind_param("ii", $contactID, $userID);
