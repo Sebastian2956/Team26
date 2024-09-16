@@ -149,7 +149,7 @@ function doRegister()
 
 				saveCookie();
 
-				window.location.href = "login.html";
+				window.location.href = "index.html";
 			}
 		};
 		xhr.send(jsonPayload);

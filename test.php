@@ -14,7 +14,7 @@
 
     <!-- Implement checking if user is already registered, prompt to login-->
 
-    <button onclick="window.location.href = 'login.html'">Login</button>
+    <button onclick="window.location.href = 'index.html'">Login</button>
     <button onclick="window.location.href = 'register.html'">Register</button>
     <button onclick="window.location.href = 'dashboard.html'">Dashboard</button>
 
