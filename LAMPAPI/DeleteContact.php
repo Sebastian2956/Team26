@@ -2,7 +2,7 @@
 
 	$inData = getRequestInfo();
 
-	$contactID = $inData["id"];
+	$contactName = $inData["contactName"];
 
 
   	//TODO: This needs to be updated with the correct connection point
@@ -24,8 +24,8 @@
                 returnWithError("User ID not available in session or request body");
                 }
 
-		$stmt = $conn->prepare("DELETE FROM Contacts WHERE ID = ? AND UserID = ?");
-		$stmt->bind_param("ii", $contactID, $userId);
+		$stmt = $conn->prepare("DELETE FROM Contacts WHERE FirstName = ? AND UserID = ?");
+		$stmt->bind_param("si", $contactName, $userId);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();

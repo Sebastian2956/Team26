@@ -11,7 +11,7 @@ let lastName = "";
 function doPopulate()
 {
     //this retrieves the session's cookies (userId won't be 0)
-    readCookie();
+    readCookie(); 
 
 
     let tmp = {userId:userId};
@@ -274,4 +274,38 @@ function doLogout()
 	lastName = "";
 	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 	window.location.href = "index.html";
+}
+
+function doDelete()
+{
+	readCookie();
+
+	let contact = document.getElementById("first-name").value;
+
+	let tmp = { userId: userId, contactName: contact };
+    let jsonPayload = JSON.stringify(tmp);
+
+	let xhr = new XMLHttpRequest();
+
+	//finds the php file to run
+    xhr.open("DELETE", urlBase + "/DeleteContact.php", true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	// Handle the server's response
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            let response = JSON.parse(xhr.responseText);
+            console.log(response);
+
+            if (response.error === "") {
+                console.log("Contact deleted successfully.");
+            } else {
+                console.error("Error deleting contact: " + response.error);
+            }
+        } else {
+            console.error("Request failed. Status: " + xhr.status);
+        }
+    };
+
+	xhr.send(jsonPayload);
 }
