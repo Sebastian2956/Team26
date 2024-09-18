@@ -309,3 +309,47 @@ function doDelete()
 
 	xhr.send(jsonPayload);
 }
+
+// not working; still need to read in userId from cookie
+function doAddContact()
+{
+	console.log("doAddContact() working")
+
+	let userId = readCookie();
+		console.log("userId from cookie:", userId);
+		
+	if (!userId) {
+		window.alert("User ID not available");
+		return;
+	}
+	
+	let firstName = document.getElementById("contactFirstName").value;
+	let lastName = document.getElementById("contactLastName").value;
+	let email = document.getElementById("contactEmail").value;
+	let phone = document.getElementById("contactPhone").value;
+
+	let tmp = {FirstName:firstName,LastName:lastName,Email:email,Phone:phone};
+	let jsonPayload = JSON.stringify( tmp );
+
+	let url = urlBase + '/AddContact.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	
+	xhr.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			let jsonObject = JSON.parse( xhr.responseText );
+			console.log(jsonObject);
+
+			if( jsonObject.error !== "" ) {
+				return;
+			}
+
+			window.alert("Contact Added");
+		} else {
+            console.error('Request failed. Status: ' + xhr.status);
+		}
+	};
+	xhr.send(jsonPayload);
+}

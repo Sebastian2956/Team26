@@ -27,7 +27,29 @@
         <!-- Left Column: Dark Color Contact List -->
         <div class="left">
             <h3>Contact List</h3>
-            <button class="round-button" title="Add New Contact">+</button>
+            
+            <button class="round-button" id="round-button" title="Add New Contact" onclick="toggleForm()">+</button>
+            <form class="form-popup" id="myForm" style="display: none;">
+                
+                <div class="form-container" id="form-container">
+                    <h2>Add New Contact</h2>
+
+                    <label for=""><strong>First Name</strong></label>
+                    <input type="text" id ="contactFirstName" placeholder="John" required>
+                    <br><br>
+                    <label for=""><strong>Last Name</strong></label>
+                    <input type="text" id ="contactLastName" placeholder="Doe" required>
+                    <br><br>
+                    <label for=""><strong>Email</strong></label>
+                    <input type="email" id ="contactEmail" placeholder="johndoe@gmail.com" required>
+                    <br><br>
+                    <label for=""><strong>Phone</strong></label>
+                    <input type="number" id ="contactPhone" placeholder="1234567890" required>
+                    
+                    <br>
+                    <button type="button" class="addNewContactBtn" onclick="doAddContact()">Add</button>
+                </div>
+            </form>
             <ul class="contact-list" id="contact-list">
                 <!-- Add more contacts as needed -->
             </ul>
@@ -55,6 +77,20 @@
     </div>
 
     <script>
+        function toggleForm() {
+            const form = document.getElementById("myForm");
+            const button = document.getElementById("round-button");
+
+            if (form.style.display === "block") {
+                form.style.display = "none";
+                button.textContent = "+";
+                button.style.backgroundColor = 'white';
+            } else {
+                form.style.display = "block";
+                button.textContent = "x";
+                button.style.backgroundColor = 'red';
+            }
+        }
     </script>
 </body>
 </html>
