@@ -8,6 +8,34 @@ var userId = 0;
 let firstName = "";
 let lastName = "";
 
+function showContactDetails(contact) {
+
+	// retrieve contact-details
+    let contactDetails = document.getElementById("contact-details");
+
+    // clear previous content
+    contactDetails.innerHTML = '';
+
+    // create elements for each field
+    let firstNameDetail = document.createElement("p");
+    firstNameDetail.innerHTML = `<strong>First Name:</strong> ${contact.FirstName}`;
+
+    let lastNameDetail = document.createElement("p");
+    lastNameDetail.innerHTML = `<strong>Last Name:</strong> ${contact.LastName}`;
+
+    let emailDetail = document.createElement("p");
+    emailDetail.innerHTML = `<strong>Email:</strong> ${contact.Email}`;
+
+    let phoneDetail = document.createElement("p");
+    phoneDetail.innerHTML = `<strong>Phone:</strong> ${contact.Phone}`;
+
+    // append elements to contactDetails
+    contactDetails.appendChild(firstNameDetail);
+    contactDetails.appendChild(lastNameDetail);
+    contactDetails.appendChild(emailDetail);
+    contactDetails.appendChild(phoneDetail);
+}
+
 function doPopulate()
 {
     //this retrieves the session's cookies (userId won't be 0)
@@ -42,10 +70,10 @@ function doPopulate()
                 // create li fullname string
                 li.textContent = `${contact.FirstName} ${contact.LastName}`;
 
-                // wip
-                // li.onclick = function() {
-                //     showContactDetails(contact);
-                // };
+                // show contact details onClick of contact name
+                li.onclick = function() {
+                    showContactDetails(contact);
+                };
 
                 // append item to list
                 contactList.appendChild(li);
@@ -57,16 +85,6 @@ function doPopulate()
 
     xhr.send(jsonPayload);
 }
-
-// wip
-// function showContactDetails(contact) {
-// 	document.getElementById('FirstName').textContent;
-// 	document.getElementById('LastName').textContent;
-// 	document.getElementById('email').textContent;
-// 	document.getElementById('phone').textContent;
-
-// }
-
 
 function doSearch()
 {

@@ -59,20 +59,19 @@
         <div class="right">
             <h3>Contact Details</h3>
             <div id="contact-details" class="contact-details">
-                <p><strong>First Name:</strong> <span id="first-name">N/A</span></p>
-                <p><strong>Last Name:</strong> <span id="last-name">N/A</span></p>
-                <p><strong>Email:</strong> <span id="email">N/A</span></p>
-                <p><strong>Phone:</strong> <span id="phone">N/A</span></p>
                 <!--<button type="button">Delete Contact</button>
                 <button type="button">Edit</button>-->
+            </div>
+            <div id="contac-buttons">
                 <button type="button" id="deleteButton" onclick="doDelete();">Delete</button>
                 <button type="button" id="editButton" onclick="doEdit();">Edit</button>
-                <script>
-                    window.onload = function() {
-                        doPopulate();
-                    };
-                </script>
             </div>
+            
+            <script>
+                window.onload = function() {
+                    doPopulate();
+                };
+            </script>
         </div>
     </div>
 

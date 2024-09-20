@@ -157,3 +157,7 @@ input::-webkit-inner-spin-button {
     color: white;
     font-size: 12px;
 }
+
+.contact-buttons {
+    display: block;
+}
