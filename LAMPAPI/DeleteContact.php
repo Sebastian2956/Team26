@@ -14,19 +14,26 @@
 	else
 	{
 		//checks if in testing mode for swaggerhub for the source of userId. Either from session or input from swaggerhub
-                $testingMode = isset($inData['testing']) && $inData['testing'] === true;
+		$testingMode = isset($inData['testing']) && $inData['testing'] === true;
 
-                if ($testingMode && isset($inData['userId'])) {
-                $userId = $inData['userId'];
-                } else if (isset($_SESSION['Users']) && isset($_SESSION['Users']['ID'])) {
-                $userId = $_SESSION['Users']['ID'];
-                }else {
-                returnWithError("User ID not available in session or request body");
-                }
+		if ($testingMode && isset($inData['userId'])) {
+		$userId = $inData['userId'];
+		} else if (isset($_SESSION['Users']) && isset($_SESSION['Users']['ID'])) {
+		$userId = $_SESSION['Users']['ID'];
+		}else {
+		returnWithError("User ID not available in session or request body");
+		}
 
-		$stmt = $conn->prepare("DELETE FROM Contacts WHERE FirstName = ? AND UserID = ?");
-		$stmt->bind_param("si", $contactName, $userId);
+		//get the contact id
+		$stmtId = $conn->prepare("Select ID from Contacts where FirstName = ? AND LastName = ? AND UserId = ?");
+		$stmtId->bind_param("ssi", $inData["contactFirstName"], $inData["contactLastName"], $userId);
+		$stmtId->execute();
+		$contactId = $stmtId->get_result()->fetch_assoc()['ID'];
+
+		$stmt = $conn->prepare("DELETE FROM Contacts WHERE ID = ?");
+		$stmt->bind_param("i", $contactId);
 		$stmt->execute();
+		$stmtId->close();
 		$stmt->close();
 		$conn->close();
 		returnWithError("");

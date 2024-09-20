@@ -34,7 +34,7 @@
         $stmtUser->close();
         $conn->close();
 	returnWithError("");
-    }
+        }
 
 	function getRequestInfo()
 	{
