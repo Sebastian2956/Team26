@@ -12,7 +12,7 @@ body {
     align-items: center;
     min-height: 100vh;
     /*background: linear-gradient(#f5f5dc, #f0f0c0);*/
-    background-image: url('../loginBG.jpg');
+    background-image: url('../cmBG.jpg');
     background-size: cover;
 }
 
