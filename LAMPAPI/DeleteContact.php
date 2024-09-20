@@ -33,10 +33,14 @@
 		$stmt = $conn->prepare("DELETE FROM Contacts WHERE ID = ?");
 		$stmt->bind_param("i", $contactId);
 		$stmt->execute();
+		if ($stmt->affected_rows > 0) {
+			returnWithError("");  // Success, return no error
+		} else {
+			returnWithError("Failed to delete contact");
+		}
 		$stmtId->close();
 		$stmt->close();
 		$conn->close();
-		returnWithError("");
 	}
 
 	function getRequestInfo()

@@ -298,15 +298,16 @@ function doDelete()
 {
 	readCookie();
 
-	let contact = document.getElementById("first-name").value;
-
-	let tmp = { userId: userId, contactName: contact };
+	let contactFirst = document.getElementById("contactFirstName").value;
+	let contactLast = document.getElementById("contactLastName").value;
+	let tmp = {contactFirstName: contactFirst, contactLastName: contactLast };
     let jsonPayload = JSON.stringify(tmp);
 
 	let xhr = new XMLHttpRequest();
 
 	//finds the php file to run
-    xhr.open("DELETE", urlBase + "/DeleteContact.php", true);
+	let url = urlBase + '/DeleteContact.' + extension;
+    xhr.open("DELETE", url + "/DeleteContact.php", true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	// Handle the server's response
