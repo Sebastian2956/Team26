@@ -60,10 +60,15 @@ input{
     margin-top: 20px;
     border: none;
     border-radius: 10px;
-    background: transparent;
+    background: white;
     border: 1px solid #fff;
     color: white;
     font-size: 12px;
+    text-align: center;
+}
+
+a:visited{
+    color: chocolate;
 }
 
 #newAccount{
