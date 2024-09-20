@@ -307,7 +307,7 @@ function doDelete()
 
 	//finds the php file to run
 	let url = urlBase + '/DeleteContact.' + extension;
-    xhr.open("DELETE", url + "/DeleteContact.php", true);
+    xhr.open("POST", url + "/DeleteContact.php", true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	// Handle the server's response
