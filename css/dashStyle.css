@@ -19,9 +19,15 @@ html,body {
     /* Same dark color as the left column */
     color: white;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
+}
+
+.header h1 {
+    margin: 0 auto; /* Ensure the header text stays centered */
+    text-align: center;
+    flex-grow: 1; /* Allows it to grow and stay centered */
 }
 
 /* Left column: Dark color for the contact list */
@@ -107,8 +113,10 @@ html,body {
 }
 
 #logoutButton {
-    position: relative;
-    right: -250px;
+    position: right;
+    padding-right: 50px;
+    background: transparent;
+    color: white;
 }
 
 button {
