@@ -18,17 +18,18 @@ body {
 
 .logincontainer{
     width: 350px;
-    height: 400px;
+    height: 500px;
     z-index: 1;
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     border: 1px solid #fff;
     position: absolute;  /* Add this */
-    left: 20%;  /* Align to the left */
+    left: 15%;  /* Align to the left */
     top: 50%;  /* Center vertically */
     transform: translateY(-50%);  /* Center vertically */
-    padding-left: 20px;  /* Optional: add space from the edge */
+    padding-left: 10px;  /* Optional: add space from the edge */
+    padding-top: 35px;
 }
 
 .regcontainer{
@@ -65,10 +66,11 @@ input{
     border: none;
     border-radius: 10px;
     background: white;
-    border: 1px solid #fff;
-    color: white;
-    font-size: 12px;
+    border-bottom: 1px solid #fff;
+    color: black;
+    font-size: 1rem;
     text-align: center;
+    outline: none;
 }
 
 a:visited{
