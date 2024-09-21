@@ -34,13 +34,19 @@ body {
 
 .regcontainer{
     width: 400px;
-    height: 450px;
+    height: 500px;
     position: relative;
     z-index: 1;
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     border: 1px solid #fff;
+    position: absolute;  /* Add this */
+    left: 15%;  /* Align to the left */
+    top: 50%;  /* Center vertically */
+    transform: translateY(-50%);  /* Center vertically */
+    padding-right: 10px;  /* Optional: add space from the edge */
+    padding-top: 20px;
 }
 
 .wrapper {
