@@ -1,10 +1,12 @@
 <?php
+	session_start();
 	$inData = getRequestInfo();
 
 	$FirstName = $inData["FirstName"];
 	$LastName = $inData["LastName"];
 	$Phone = $inData["Phone"];
 	$Email = $inData["Email"];
+	$userId = $inData["userId"];
 
   //TODO: This needs to be updated with the correct connection point
 	$conn = new mysqli("localhost", "root", "", "ContactManager");

@@ -34,6 +34,8 @@ function showContactDetails(contact) {
     contactDetails.appendChild(lastNameDetail);
     contactDetails.appendChild(emailDetail);
     contactDetails.appendChild(phoneDetail);
+
+	contactDetails.dataset.contact = JSON.stringify(contact);
 }
 
 function doPopulate()
@@ -255,6 +257,8 @@ function readCookie()
 {
 	userId = -1;
 	let data = document.cookie;
+	console.log("Cookies:", data);
+
 	let splits = data.split(",");
 	for(var i = 0; i < splits.length; i++)
 	{
@@ -280,8 +284,9 @@ function readCookie()
 	}
 	else
 	{
-//		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-	}
+	console.log("User ID found:", userId);
+	return userId;
+}
 
 }
 
@@ -335,19 +340,15 @@ function doAddContact()
 	console.log("doAddContact() working")
 
 	let userId = readCookie();
-		console.log("userId from cookie:", userId);
-		
-	if (!userId) {
-		window.alert("User ID not available");
-		return;
-	}
+	console.log("userId from cookie:", userId);
 	
 	let firstName = document.getElementById("contactFirstName").value;
 	let lastName = document.getElementById("contactLastName").value;
 	let email = document.getElementById("contactEmail").value;
 	let phone = document.getElementById("contactPhone").value;
 
-	let tmp = {FirstName:firstName,LastName:lastName,Email:email,Phone:phone};
+	let tmp = {FirstName:firstName,LastName:lastName,Email:email,Phone:phone, userId:userId};
+	console.log("Payload: ", tmp); 
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/AddContact.' + extension;
@@ -371,4 +372,77 @@ function doAddContact()
 		}
 	};
 	xhr.send(jsonPayload);
+}
+
+// TODO: connect and update DB 
+function doEdit() {
+	let newFirstName = document.getElementById("editFirstName").value;
+	let newLastName = document.getElementById("editLastName").value;
+	let newEmail = document.getElementById("editEmail").value;
+	let newPhone = document.getElementById("editPhone").value;
+
+	console.log(newFirstName, newLastName, newEmail, newPhone);
+}
+
+function toggleEdit() {
+
+	// retrieve contact-details
+	let contactDetails = document.getElementById("contact-details");
+
+	// parse contact-details data
+	let contact = JSON.parse(contactDetails.dataset.contact);
+
+	// clear previous content
+	contactDetails.innerHTML = '';
+
+	// create elements for each field
+	
+	// first name
+	let firstNameDetail = document.createElement("p");
+	firstNameDetail.innerHTML = '<strong>First Name:</strong> ';
+	let firstNameInput = document.createElement("input");
+	firstNameInput.type = "text";
+	firstNameInput.value = contact.FirstName;
+	firstNameInput.id = "editFirstName";
+	firstNameDetail.appendChild(firstNameInput);
+
+	// last name
+	let lastNameDetail = document.createElement("p");
+	lastNameDetail.innerHTML = `<strong>Last Name:</strong> `;
+	let lastNameInput = document.createElement("input");
+	lastNameInput.type = "text";
+	lastNameInput.value = contact.LastName;
+	lastNameInput.id = "editLastName";
+	lastNameDetail.appendChild(lastNameInput);
+
+	// email
+	let emailDetail = document.createElement("p");
+	emailDetail.innerHTML = `<strong>Email:</strong> `;
+	let emailInput = document.createElement("input");
+	emailInput.type = "email";
+	emailInput.value = contact.Email;
+	emailInput.id = "editEmail";
+	emailDetail.appendChild(emailInput);
+
+	// phone
+	let phoneDetail = document.createElement("p");
+	phoneDetail.innerHTML = `<strong>Phone:</strong> `;
+	let phoneInput = document.createElement("input");
+	phoneInput.type = "text";
+	phoneInput.value = contact.Phone;
+	phoneInput.id = "editPhone";
+	phoneDetail.appendChild(phoneInput);
+
+	// append elements to contactDetails
+	contactDetails.appendChild(firstNameDetail);
+	contactDetails.appendChild(lastNameDetail);
+	contactDetails.appendChild(emailDetail);
+	contactDetails.appendChild(phoneDetail);
+
+	// 
+	let saveButton = document.createElement("button");
+	saveButton.innerText = "Save";
+	saveButton.onclick = function() { doEdit(); };
+
+	contactDetails.appendChild(saveButton);
 }
