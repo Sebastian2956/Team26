@@ -11,9 +11,10 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /*background: linear-gradient(#f5f5dc, #f0f0c0);*/
     background-image: url('../cmBG.jpg');
+    background-position: right center;
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .logincontainer{
