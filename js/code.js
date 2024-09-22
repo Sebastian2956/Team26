@@ -255,6 +255,8 @@ function readCookie()
 {
 	userId = -1;
 	let data = document.cookie;
+	console.log("Cookies:", data);
+
 	let splits = data.split(",");
 	for(var i = 0; i < splits.length; i++)
 	{
@@ -280,8 +282,9 @@ function readCookie()
 	}
 	else
 	{
-//		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-	}
+	console.log("User ID found:", userId);
+	return userId;
+}
 
 }
 
@@ -335,19 +338,15 @@ function doAddContact()
 	console.log("doAddContact() working")
 
 	let userId = readCookie();
-		console.log("userId from cookie:", userId);
-		
-	if (!userId) {
-		window.alert("User ID not available");
-		return;
-	}
+	console.log("userId from cookie:", userId);
 	
 	let firstName = document.getElementById("contactFirstName").value;
 	let lastName = document.getElementById("contactLastName").value;
 	let email = document.getElementById("contactEmail").value;
 	let phone = document.getElementById("contactPhone").value;
 
-	let tmp = {FirstName:firstName,LastName:lastName,Email:email,Phone:phone};
+	let tmp = {FirstName:firstName,LastName:lastName,Email:email,Phone:phone, userId:userId};
+	console.log("Payload: ", tmp); 
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/AddContact.' + extension;
