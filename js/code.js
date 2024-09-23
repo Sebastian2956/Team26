@@ -301,13 +301,31 @@ function doLogout()
 
 function doDelete()
 {
-	readCookie();
+	let userId = readCookie();
+	
+	// Step 1: Get the element by ID
+	let contactDetailsElement = document.getElementById("contact-details");
 
-	let contactFirst = document.getElementById("contactFirstName").value;
-	let contactLast = document.getElementById("contactLastName").value;
-	let tmp = {contactFirstName: contactFirst, contactLastName: contactLast };
-    let jsonPayload = JSON.stringify(tmp);
+	// Step 2: Retrieve the data-contact attribute (it will be a string)
+	let contactDataString = contactDetailsElement.getAttribute("data-contact");
 
+	// Step 3: Parse the string as JSON
+	let contactData = JSON.parse(contactDataString);
+
+	// Step 4: Access the first name
+	let firstName = contactData.FirstName;
+	let lastName = contactData.LastName;
+	
+	//Output the first name
+	console.log(firstName + lastName);
+
+	window.alert(firstName+lastName);
+	let tmp = {userId: userId,contactFirstName:firstName,contactLastName:lastName};
+	window.alert(tmp);
+	console.log(tmp);
+	let jsonPayload = JSON.stringify(tmp);
+	console.log(jsonPayload);
+	window.alert(jsonPayload);
 	let xhr = new XMLHttpRequest();
 
 	//finds the php file to run
@@ -318,8 +336,9 @@ function doDelete()
 	// Handle the server's response
     xhr.onload = function() {
         if (xhr.status === 200) {
-            let response = JSON.parse(xhr.responseText);
-            console.log(response);
+            
+      	let response = JSON.parse(xhr.responseText);
+            console.log("response: ", response);
 
             if (response.error === "") {
                 console.log("Contact deleted successfully.");
@@ -347,7 +366,7 @@ function doAddContact()
 	let email = document.getElementById("contactEmail").value;
 	let phone = document.getElementById("contactPhone").value;
 
-	let tmp = {FirstName:firstName,LastName:lastName,Email:email,Phone:phone, userId:userId};
+	let tmp = {FirstName:firstName,LastName:lastName,Email:email,Phone:phone,userId:userId};
 	console.log("Payload: ", tmp); 
 	let jsonPayload = JSON.stringify( tmp );
 
