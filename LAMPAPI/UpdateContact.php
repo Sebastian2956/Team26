@@ -5,7 +5,8 @@
 	$LastName = $inData["LastName"];
 	$Phone = $inData["Phone"];
 	$Email = $inData["Email"];
-
+	$oldFirstName = $inData["oldFirstName"];
+	$oldLastName = $inData["oldLastName"];
 
 	//TODO: this connection will have to be updated
 	$conn = new mysqli("localhost", "root", "", "ContactManager");
@@ -15,22 +16,11 @@
 	}
 	else
 	{
-
-        	//checks if in testing mode for swaggerhub for the source of userId. Either from session or input from swaggerhub
-                $testingMode = isset($inData['testing']) && $inData['testing'] === true;
-
-                if ($testingMode && isset($inData['userId'])) {
                 $userId = $inData['userId'];
-                } else if (isset($_SESSION['Users']) && isset($_SESSION['Users']['ID'])) {
-                $userId = $_SESSION['Users']['ID'];
-                }else {
-                returnWithError("User ID not available in session or request body");
-                }
 
         	//get ID of contact you want changed
-		$stmt = $conn->prepare("select ID from Contacts where FirstName like ? AND UserID=?");
-		$name = "%" . $FirstName . "%";
-		$stmt->bind_param("ss", $name, $userId);
+		$stmt = $conn->prepare("select ID from Contacts where FirstName=? AND LastName=? AND UserID=?");
+		$stmt->bind_param("ssi", $oldFirstName, $oldLastName, $userId);
 		$stmt->execute();
 		$result = $stmt->get_result();
 		$result_row = $result->fetch_assoc();
@@ -54,7 +44,7 @@
 	function sendResultInfoAsJson( $obj )
 	{
 		header('Content-type: application/json');
-		echo $obj;
+		echo json_encode($obj);
 	}
 
 	function returnWithError( $err )

@@ -330,7 +330,7 @@ function doDelete()
 
 	//finds the php file to run
 	let url = urlBase + '/DeleteContact.' + extension;
-    xhr.open("POST", url + "/DeleteContact.php", true);
+    xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	// Handle the server's response
@@ -395,12 +395,50 @@ function doAddContact()
 
 // TODO: connect and update DB 
 function doEdit() {
+	// retrieve contact-details
+ 	let contactDetails = document.getElementById("contact-details");
+
+	// parse contact-details data
+	let contact = JSON.parse(contactDetails.dataset.contact);
+	let oldFirstName = contact.FirstName;
+	let oldLastName = contact.LastName;
+
+	let userId = readCookie();
 	let newFirstName = document.getElementById("editFirstName").value;
 	let newLastName = document.getElementById("editLastName").value;
 	let newEmail = document.getElementById("editEmail").value;
 	let newPhone = document.getElementById("editPhone").value;
 
 	console.log(newFirstName, newLastName, newEmail, newPhone);
+	
+	let url = urlBase + "/UpdateContact." + extension;
+	
+	//payload
+	let tmp = {userId:userId,FirstName:newFirstName,LastName:newLastName,Email:newEmail,Phone:newPhone,oldFirstName:oldFirstName,oldLastName:oldLastName};
+	jsonPayload = JSON.stringify(tmp);
+
+	//xhr stuff
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try{
+		xhr.onload = function(){
+			if(this.status === 200){
+				console.log("string response: " + xhr.responseText);
+				let response = JSON.parse(xhr.responseText);
+				console.log("response: " + response);
+				if(response.error === ""){
+					return("Successful edit");
+				}else{
+					return("Edit unsuccessful");
+				}
+			}
+		}
+		xhr.send(jsonPayload);
+	}catch(err){
+		console.log(err.message);
+	}
+
 }
 
 function toggleEdit() {
