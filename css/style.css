@@ -27,7 +27,7 @@ body {
     border-radius: 10px;
     border: 1.75px solid #f7a21e;
     position: absolute;  /* Add this */
-    left: 15%;  /* Align to the left */
+    left: 10%;  /* Align to the left */
     top: 50%;  /* Center vertically */
     transform: translateY(-50%);  /* Center vertically */
     padding-left: 10px;  /* Optional: add space from the edge */
@@ -45,7 +45,7 @@ body {
     border-radius: 10px;
     border: 1.75px solid #f7a21e;
     position: absolute;  /* Add this */
-    left: 12.5%;  /* Align to the left */
+    left: 7.5%;  /* Align to the left */
     top: 50%;  /* Center vertically */
     transform: translateY(-50%);  /* Center vertically */
     padding-right: 10px;  /* Optional: add space from the edge */
