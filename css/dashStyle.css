@@ -46,7 +46,7 @@ html,body {
 }
 
 .header h2 {            /* Changed this line */
-    padding-top: -30px; /* Changed this line */
+    padding-bottom: 30px; /* Changed this line */
 }                       /* Changed this line */
 
 /* Right column: Lighter color for contact details */
