@@ -11,15 +11,7 @@
     }
     else
     {
-	//checks if in testing mode for swaggerhub for the source of userId. Either from session or input from swaggerhub
-        $testingMode = isset($inData['testing']) && $inData['testing'] === true;
-        if ($testingMode && isset($inData['userId'])) {
-        	$userId = $inData['userId'];
-        } else if (isset($_SESSION['Users']) && isset($_SESSION['Users']['ID'])) {
-                $userId = $_SESSION['Users']['ID'];
-        }else {
-                returnWithError("User ID not available in session or request body");
-	}
+        $userId = $inData['userId'];
 
         // Delete contacts associated with the user
         $stmtContacts = $conn->prepare("DELETE FROM Contacts WHERE UserID = ?");
