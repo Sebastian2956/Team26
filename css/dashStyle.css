@@ -169,3 +169,15 @@ input::-webkit-inner-spin-button {
 .contact-buttons {
     display: block;
 }
+
+/* test: change */
+.search-button  {
+    background: black;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
