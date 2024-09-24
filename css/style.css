@@ -36,7 +36,7 @@ body {
 
 .regcontainer{
     width: 400px;
-    height: 500px;
+    height: 550px;
     position: relative;
     z-index: 1;
    /* background: rgba(255, 255, 255, 0.1); */
@@ -197,4 +197,11 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+#loginResult , #registerResult {
+    display: block;
+    color: #ff0000;
+    margin: 10px;
+    padding: 10px;
 }

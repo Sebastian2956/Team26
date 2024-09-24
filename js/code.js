@@ -137,9 +137,6 @@ function doLogin()
   // converts the struct to a json blob
 	let jsonPayload = JSON.stringify( tmp );
 
-  //this is just a window alert
-  window.alert("This: " + jsonPayload);
-
   //this picks the php file
 	let url = urlBase + '/Login.' + extension;
 
@@ -160,17 +157,9 @@ function doLogin()
 
 				if( userId < 1 )
 				{
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					document.getElementById("loginResult").innerHTML = "<span>User/Password combination incorrect</span>";
 					return;
 				}
-
-				firstName = jsonObject.FirstName;
-				lastName = jsonObject.LastName;
-
-				console.log(firstName);
-				console.log(lastName);
-
-				window.alert("Hey " + firstName + " " + lastName + " " + jsonObject.id);
 
 				saveCookie();
 
@@ -183,7 +172,6 @@ function doLogin()
 	catch(err)
 	{
 		document.getElementById("loginResult").innerHTML = err.message;
-		window.alert(err.message);
 	}
 
 
@@ -316,16 +304,8 @@ function doDelete()
 	let firstName = contactData.FirstName;
 	let lastName = contactData.LastName;
 	
-	//Output the first name
-	console.log(firstName + lastName);
-
-	window.alert(firstName+lastName);
 	let tmp = {userId: userId,contactFirstName:firstName,contactLastName:lastName};
-	window.alert(tmp);
-	console.log(tmp);
 	let jsonPayload = JSON.stringify(tmp);
-	console.log(jsonPayload);
-	window.alert(jsonPayload);
 	let xhr = new XMLHttpRequest();
 
 	//finds the php file to run
