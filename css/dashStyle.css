@@ -45,6 +45,10 @@ html,body {
     border: 1px solid white;
 }
 
+.header h2 {            /* Changed this line */
+    padding-top: -30px; /* Changed this line */
+}                       /* Changed this line */
+
 /* Right column: Lighter color for contact details */
 .right {
     width: 50%;
@@ -164,6 +168,7 @@ input::-webkit-inner-spin-button {
     border: 1px solid #fff;
     color: white;
     font-size: 12px;
+    align-items: center; /* Changed this line */
 }
 
 .contact-buttons {
