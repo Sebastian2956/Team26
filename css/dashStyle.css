@@ -46,7 +46,7 @@ html,body {
 }
 
 .form-container h2 {    /* Changed this line */
-    margin-top: -50px;   /* Changed this line */
+    margin-top: -40px;   /* Changed this line */
 }                       /* Changed this line */
 
 /* Right column: Lighter color for contact details */
@@ -116,7 +116,7 @@ html,body {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-.form-container button {    /* Pads add button */
+.form-container button {    /* Pads Add button */
     margin-top: 10%;
 }
 
