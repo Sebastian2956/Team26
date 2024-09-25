@@ -45,7 +45,7 @@ html,body {
     border: 1px solid white;
 }
 
-.header h2 {            /* Changed this line */
+.form-container h2 {            /* Changed this line */
     margin-top: 20px; /* Changed this line */
 }                       /* Changed this line */
 
@@ -161,7 +161,7 @@ input::-webkit-inner-spin-button {
 
 .form-container input {
     padding: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
     border: none;
     border-radius: 10px;
     background: transparent;
