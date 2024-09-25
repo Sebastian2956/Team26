@@ -46,7 +46,7 @@ html,body {
 }
 
 .form-container h2 {    /* Changed this line */
-    margin-top: 50px;   /* Changed this line */
+    margin-top: -50px;   /* Changed this line */
 }                       /* Changed this line */
 
 /* Right column: Lighter color for contact details */
@@ -117,7 +117,7 @@ html,body {
 }
 
 .form-container button {    /* Pads add button */
-    margin-top: 20%;
+    margin-top: 10%;
 }
 
 #logoutButton {
@@ -172,7 +172,7 @@ input::-webkit-inner-spin-button {
     border: 1px solid #fff;
     color: white;
     font-size: 12px;
-    /*text-align: center;  Changed this line */
+    text-align: center; /* Changed this line */
 }
 
 .contact-buttons {
