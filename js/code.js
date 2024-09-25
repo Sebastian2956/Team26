@@ -94,26 +94,57 @@ function doSearch()
     readCookie();
 
     //The id tag will have to be searchElement if you want this search to work
-    let searchElement = document.getElementById("searchElement").value;
+    let searchElement = document.getElementById("search-input").value;
+	let phpFile = "";
+	let tmp = {};
 
-    let tmp = {userID:userId,searchElement:searchElement};
+	if (searchElement == "") {
+		tmp = {userId:userId}
+		phpFile = "/PopulateContactList.php";
+	} else {
+		tmp = {userId:userId,searchElement:searchElement}
+		phpFile = "/SearchContacts.php";
+	}
+
     let jsonPayload = JSON.stringify(tmp);
 
     let xhr = new XMLHttpRequest();
 
     //finds the php file to run
-    xhr.open("POST", urlBase + "/SearchContacts.php", true);
+    xhr.open("POST", urlBase + phpFile, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     // when the request loads this will parse the reponse
     xhr.onload = function() {
-	if (xhr.status === 200) {
-	    let response = JSON.parse(xhr.responseText);
-	    console.log(response);
-	} else {
-	    console.error('Request failed. Status: ' + xhr.status);
-	}
-    }
+		if (xhr.status === 200) {
+			let contacts = JSON.parse(xhr.responseText);
+			console.log(contacts);
+
+            // retrieve contact-list
+            let contactList = document.getElementById("contact-list");
+
+            // clear previous content
+            contactList.innerHTML = '';
+
+            // loop through each contact and add to list
+            contacts.forEach(contact => {
+                let li = document.createElement("li");
+
+                // create li fullname string
+                li.textContent = `${contact.FirstName} ${contact.LastName}`;
+
+                // show contact details onClick of contact name
+                li.onclick = function() {
+                    showContactDetails(contact);
+                };
+
+                // append item to list
+                contactList.appendChild(li);
+            });
+        } else {
+            console.error('Request failed. Status: ' + xhr.status);
+        }
+	};
     xhr.send(jsonPayload);
 }
 
