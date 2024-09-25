@@ -45,8 +45,8 @@ html,body {
     border: 1px solid white;
 }
 
-.form-container h2 {            /* Changed this line */
-    margin-top: 20px; /* Changed this line */
+.form-container h2 {    /* Changed this line */
+    margin-top: 50px;   /* Changed this line */
 }                       /* Changed this line */
 
 /* Right column: Lighter color for contact details */
@@ -116,6 +116,10 @@ html,body {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
+.form-container button {    /* Pads add button */
+    margin-top: 20%;
+}
+
 #logoutButton {
     position: right;
     padding-right: 50px;
@@ -161,7 +165,7 @@ input::-webkit-inner-spin-button {
 
 .form-container input {
     padding: 10px;
-    margin-top: 10px;
+    margin-top: 10px; /* Was 20px */
     border: none;
     border-radius: 10px;
     background: transparent;
