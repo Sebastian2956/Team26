@@ -179,6 +179,14 @@ input::-webkit-inner-spin-button {
     text-align: center;
 }
 
+#email {
+    padding-left: 10%;
+}
+
+#phone {
+    padding-left: 30%;
+}
+
 .contact-buttons {
     display: block;
 }
