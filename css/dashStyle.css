@@ -176,15 +176,8 @@ input::-webkit-inner-spin-button {
 }
 
 .form-container label {
-    text-align: center;
-}
-
-#email {
-    padding-left: 50px;
-}
-
-#phone {
-    padding-left: 30%;
+    display: inline-block;
+    width: 150px;
 }
 
 .contact-buttons {
