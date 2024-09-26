@@ -175,6 +175,10 @@ input::-webkit-inner-spin-button {
     text-align: center; /* Changed this line */
 }
 
+.form-container label {
+    text-align: center;
+}
+
 .contact-buttons {
     display: block;
 }
