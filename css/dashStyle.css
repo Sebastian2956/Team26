@@ -46,7 +46,7 @@ html,body {
 }
 
 .form-container h2 {    /* Changed this line */
-    margin-top: -40px;   /* Changed this line */
+    margin-top: -30px;   /* Changed this line */
 }                       /* Changed this line */
 
 /* Right column: Lighter color for contact details */
