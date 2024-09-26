@@ -12,6 +12,10 @@ function showContactDetails(contact) {
 
 	// retrieve contact-details
     let contactDetails = document.getElementById("contact-details");
+	let button = document.getElementById("editButton");
+
+	button.textContent = "Edit";
+	button.style.backgroundColor = "white";
 
     // clear previous content
     contactDetails.innerHTML = '';
@@ -355,6 +359,7 @@ function doDelete()
                 console.log("Contact deleted successfully.");
             } else {
                 console.error("Error deleting contact: " + response.error);
+				window.alert("Contact Deleted");
             }
         } else {
             console.error("Request failed. Status: " + xhr.status);
@@ -377,6 +382,8 @@ function doAddContact()
 	let email = document.getElementById("contactEmail").value;
 	let phone = document.getElementById("contactPhone").value;
 
+	document.getElementById("addResult").innerHTML = "";
+
 	let tmp = {FirstName:firstName,LastName:lastName,Email:email,Phone:phone,userId:userId};
 	console.log("Payload: ", tmp); 
 	let jsonPayload = JSON.stringify( tmp );
@@ -396,9 +403,12 @@ function doAddContact()
 				return;
 			}
 
-			window.alert("Contact Added");
+			document.getElementById("addResult").innerHTML = "Contact Added!";
+
 		} else {
             console.error('Request failed. Status: ' + xhr.status);
+			document.getElementById("addResult").innerHTML = xhr.status;
+
 		}
 	};
 	xhr.send(jsonPayload);
@@ -456,61 +466,70 @@ function toggleEdit() {
 
 	// retrieve contact-details
 	let contactDetails = document.getElementById("contact-details");
+	const button = document.getElementById("editButton");
 
-	// parse contact-details data
-	let contact = JSON.parse(contactDetails.dataset.contact);
+	if (button.textContent === "Close") {
+		button.textContent = "Edit";
+		button.style.backgroundColor = "white";
+		showContactDetails();
+	} else {
+		// parse contact-details data
+		let contact = JSON.parse(contactDetails.dataset.contact);
+		// clear previous content
+		contactDetails.innerHTML = '';
 
-	// clear previous content
-	contactDetails.innerHTML = '';
+		// create elements for each field
+		
+		// first name
+		let firstNameDetail = document.createElement("p");
+		firstNameDetail.innerHTML = '<strong>First Name:</strong> ';
+		let firstNameInput = document.createElement("input");
+		firstNameInput.type = "text";
+		firstNameInput.value = contact.FirstName;
+		firstNameInput.id = "editFirstName";
+		firstNameDetail.appendChild(firstNameInput);
 
-	// create elements for each field
-	
-	// first name
-	let firstNameDetail = document.createElement("p");
-	firstNameDetail.innerHTML = '<strong>First Name:</strong> ';
-	let firstNameInput = document.createElement("input");
-	firstNameInput.type = "text";
-	firstNameInput.value = contact.FirstName;
-	firstNameInput.id = "editFirstName";
-	firstNameDetail.appendChild(firstNameInput);
+		// last name
+		let lastNameDetail = document.createElement("p");
+		lastNameDetail.innerHTML = `<strong>Last Name:</strong> `;
+		let lastNameInput = document.createElement("input");
+		lastNameInput.type = "text";
+		lastNameInput.value = contact.LastName;
+		lastNameInput.id = "editLastName";
+		lastNameDetail.appendChild(lastNameInput);
 
-	// last name
-	let lastNameDetail = document.createElement("p");
-	lastNameDetail.innerHTML = `<strong>Last Name:</strong> `;
-	let lastNameInput = document.createElement("input");
-	lastNameInput.type = "text";
-	lastNameInput.value = contact.LastName;
-	lastNameInput.id = "editLastName";
-	lastNameDetail.appendChild(lastNameInput);
+		// email
+		let emailDetail = document.createElement("p");
+		emailDetail.innerHTML = `<strong>Email:</strong> `;
+		let emailInput = document.createElement("input");
+		emailInput.type = "email";
+		emailInput.value = contact.Email;
+		emailInput.id = "editEmail";
+		emailDetail.appendChild(emailInput);
 
-	// email
-	let emailDetail = document.createElement("p");
-	emailDetail.innerHTML = `<strong>Email:</strong> `;
-	let emailInput = document.createElement("input");
-	emailInput.type = "email";
-	emailInput.value = contact.Email;
-	emailInput.id = "editEmail";
-	emailDetail.appendChild(emailInput);
+		// phone
+		let phoneDetail = document.createElement("p");
+		phoneDetail.innerHTML = `<strong>Phone:</strong> `;
+		let phoneInput = document.createElement("input");
+		phoneInput.type = "text";
+		phoneInput.value = contact.Phone;
+		phoneInput.id = "editPhone";
+		phoneDetail.appendChild(phoneInput);
 
-	// phone
-	let phoneDetail = document.createElement("p");
-	phoneDetail.innerHTML = `<strong>Phone:</strong> `;
-	let phoneInput = document.createElement("input");
-	phoneInput.type = "text";
-	phoneInput.value = contact.Phone;
-	phoneInput.id = "editPhone";
-	phoneDetail.appendChild(phoneInput);
+		// append elements to contactDetails
+		contactDetails.appendChild(firstNameDetail);
+		contactDetails.appendChild(lastNameDetail);
+		contactDetails.appendChild(emailDetail);
+		contactDetails.appendChild(phoneDetail);
 
-	// append elements to contactDetails
-	contactDetails.appendChild(firstNameDetail);
-	contactDetails.appendChild(lastNameDetail);
-	contactDetails.appendChild(emailDetail);
-	contactDetails.appendChild(phoneDetail);
+		// 
+		let saveButton = document.createElement("button");
+		saveButton.innerText = "Save";
+		saveButton.onclick = function() { doEdit(); };
 
-	// 
-	let saveButton = document.createElement("button");
-	saveButton.innerText = "Save";
-	saveButton.onclick = function() { doEdit(); };
+		contactDetails.appendChild(saveButton);
 
-	contactDetails.appendChild(saveButton);
+		button.textContent = "Close";
+		button.style.backgroundColor = "red";
+	}
 }

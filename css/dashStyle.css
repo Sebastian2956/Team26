@@ -190,3 +190,7 @@ input::-webkit-inner-spin-button {
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+.confirmationResult span{
+    color: red;
+}
