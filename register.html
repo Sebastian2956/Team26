@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <link rel="stylesheet" href="./css/style.css">
     <script type="text/javascript" src="js/md5.js"></script>
     <script type="text/javascript" src="js/code.js"></script>
@@ -19,8 +20,46 @@
 
         <button class="btn btn-primary" class="btn btn-primary" type="submit">Register</button>
     </form>
+=======
+    <title>Create New Account</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="regcontainer">
+        <div class="wrapper">
+            <h2 id="newAccount">Create New Account</h2>
+            <div class="registerDiv">
+                <!-- TODO -->
+                <!-- might have to split up name into first & last inputs-->
+                <!-- use email for username? or seperate input for login?-->
+                 <!-- change id's for input based on code.js doRegister() names -->
+                <label for="">First Name</label>
+                <input type="text" id ="registerFirstName" placeholder="John">
+                <br><br>
+                <label for="">Last Name</label>
+                <input type="text" id ="registerLastName" placeholder="Doe">
+                <br><br>
+                <label for="">Username</label>
+                <input type="text" id ="registerUsername" placeholder="johndoe">
+                <br><br>
+                <label for="">Password</label>
+                <input type="password" id = "registerPassword" placeholder="Password">
+                <br>
 
+                <p id="regText">Already registered? <a href="index.html" id="login">Login</a></p>
+>>>>>>> main
+
+                <button type="button" id="registerButton" onclick="doRegister();">Register</button>
+                <span id="registerResult"></span>
+            </div>
+        </div>
+    </div>
     <br>
+<<<<<<< HEAD
     <button class="btn btn-primary" class="btn btn-primary" onclick="window.location.href = 'index.html'">Home</button>
+=======
+    <!--<button onclick="window.location.href = 'login.html'">Login</button>-->
+>>>>>>> main
 </body>
+<script type="text/javascript" src="js/code.js"></script>
 </html>

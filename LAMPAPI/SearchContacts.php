@@ -1,6 +1,7 @@
 <?php
 
 	$inData = getRequestInfo();
+<<<<<<< HEAD
 	
 	$searchResults = "";
 	$searchCount = 0;
@@ -38,6 +39,34 @@
 			returnWithInfo( $searchResults );
 		}
 		
+=======
+
+	$searchElement = "";
+	$userId = 0;
+
+	//TODO: this connection will have to be updated
+	$conn = new mysqli("localhost", "root", "", "ContactManager");
+	if ($conn->connect_error)
+	{
+		returnWithError( $conn->connect_error );
+	}
+	else
+	{
+		$searchElement = $inData["searchElement"];
+		$array = array();
+		//gets results from first and last name
+		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE (FirstName LIKE ? AND UserID=?) OR (LastName LIKE ? AND UserID=?);");
+		$searchElement = "%" . $inData["searchElement"] . "%";
+		$stmt->bind_param("sisi", $searchElement, $inData["userId"], $searchElement, $inData["userId"]);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		while($row = $result->fetch_assoc())
+		{
+			$array[] = $row;
+		}
+
+		sendResultInfoAsJson(json_encode($array));
+>>>>>>> main
 		$stmt->close();
 		$conn->close();
 	}
@@ -52,17 +81,30 @@
 		header('Content-type: application/json');
 		echo $obj;
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> main
 	function returnWithError( $err )
 	{
 		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> main
 	function returnWithInfo( $searchResults )
 	{
 		$retValue = '{"results":[' . $searchResults . '],"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
+<<<<<<< HEAD
 	
 ?>
+=======
+
+?>
+>>>>>>> main
