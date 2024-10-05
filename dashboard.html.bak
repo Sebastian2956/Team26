@@ -70,7 +70,6 @@
 				<div id="contact-buttons">
 					<button type="button" id="deleteButton" onclick="doDelete(); doPopulate();">Delete</button>
 					<button type="button" id="editButton" onclick="toggleEdit();">Edit</button> <!-- Toggle Edit/Save -->
-					<button type="button" id="cancelButton" onclick="cancelEdit();" style="display: none;">Cancel</button>
 				</div>
         </div>
     </div>

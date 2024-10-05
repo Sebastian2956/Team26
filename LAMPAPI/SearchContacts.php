@@ -6,7 +6,7 @@
 	$userId = 0;
 
 	//TODO: this connection will have to be updated
-	$conn = new mysqli("localhost", "root", "", "ContactManager");
+	$conn = new mysqli("localhost:3307", "root", "", "ContactManager");
 	if ($conn->connect_error)
 	{
 		returnWithError( $conn->connect_error );

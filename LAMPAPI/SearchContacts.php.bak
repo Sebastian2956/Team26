@@ -1,0 +1,45 @@
+<?php
+    $inData = getRequestInfo();
+
+    // Retrieve contactId and userId from the request
+    $contactId = $inData["contactId"];
+    $userId = $inData["userId"];
+
+    $conn = new mysqli("localhost:3307", "root", "", "ContactManager");
+    if ($conn->connect_error) {
+        returnWithError($conn->connect_error);
+    } else {
+        // Prepare a query to fetch the contact by contactId and userId
+        $stmt = $conn->prepare("SELECT * FROM Contacts WHERE ID=? AND UserID=?;");
+        $stmt->bind_param("ii", $contactId, $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        // Fetch and return the result
+        if ($row = $result->fetch_assoc()) {
+            sendResultInfoAsJson($row);  // Send the single contact as JSON
+        } else {
+            returnWithError("No contact found.");
+        }
+
+        $stmt->close();
+        $conn->close();
+    }
+
+    // Function to decode request input
+    function getRequestInfo() {
+        return json_decode(file_get_contents('php://input'), true);
+    }
+
+    // Function to send JSON response
+    function sendResultInfoAsJson($obj) {
+        header('Content-type: application/json');
+        echo json_encode($obj);
+    }
+
+    // Function to handle errors
+    function returnWithError($err) {
+        $retValue = '{"error":"' . $err . '"}';
+        sendResultInfoAsJson($retValue);
+    }
+?>

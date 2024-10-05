@@ -20,9 +20,6 @@ team26cm.seb.christmas
 -Added a cancel button during the edit functionality that allows user to cancel all changes to that contact
 	-only visible when editing a contact
 -Changed the save button from green to white
--Added a selectContact.php file to streamline real-time updates of contact list after updating a Contact
-	-There was a bug that when you edited a contact then swapped to another contact and returned to the previous
-	 contact that was just edited the contact details of the selected contact were incorrect
 
 #To Do:
 -Up long in right panel has a welcome display until a contact is selected
@@ -41,4 +38,3 @@ team26cm.seb.christmas
 - Devak Sharma (Frontend 1)
 - Jose Kostyun (Frontend 2)
 - Zachary Mohamed (DBA)
-
